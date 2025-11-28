@@ -46,23 +46,28 @@
       <div class="hero-overlay">
         <div class="container hero-inner">
           <div class="hero-content">
-            <div class="hero-badges">
-              <span class="badge badge-primary">Премьера сезона</span>
-              <span class="badge badge-soft">Спектакль 6+</span>
+            <p class="hero-tagline">Театр и студия, выросшие из «Эмоции»</p>
+
+            <h1 class="hero-title">Театр-студия «Эмоцика»</h1>
+
+            <p class="hero-desc">
+              Независимый детский театр и киношкола в Санкт-Петербурге. Спектакли,
+              новогодние программы и съёмки для детей и подростков.
+            </p>
+
+            <div class="hero-meta">
+              <span class="hero-meta-item">С 2013 года в студии занималось 400+ детей</span>
+              <span class="hero-meta-separator">•</span>
+              <span class="hero-meta-item">Сейчас в репертуаре: «Любовь у сливного бачка» и «Снежная королева»</span>
             </div>
 
-            <p class="hero-tagline">Детский театр и студия «Эмоцика», Санкт-Петербург</p>
-            <h1 class="hero-title">«Любовь у сливного бачка»</h1>
-            <p class="hero-desc">
-              Абсурдная история о самом главном — глазами детей. Живой спектакль, после которого хочется говорить.
-            </p>
-            <p class="hero-meta">Ближайший показ: 12 декабря · Дом культуры (площадка уточняется)</p>
-
             <div class="hero-actions">
-              <a href="#" class="btn btn-primary">Купить билет</a>
-              <a href="#play" class="btn btn-ghost">Подробнее о спектакле</a>
-              <a href="#contacts" class="btn btn-ghost btn-secondary" data-scroll-to="contacts-form">
+              <a href="#afisha" class="btn btn-primary">Купить билеты</a>
+              <button type="button" class="btn btn-secondary" data-scroll-to="contacts-form">
                 Записаться в студию
+              </button>
+              <a href="#tracks" class="btn btn-ghost">
+                Посмотреть направления
               </a>
             </div>
           </div>
@@ -78,37 +83,178 @@
       </div>
     </section>
 
-    <section id="afisha" class="section section-afisha reveal-on-scroll">
+    <section id="tracks" class="section section-tracks reveal-on-scroll">
       <div class="container">
-        <h2 class="section-title">Эмоцика представляет</h2>
-        <p class="section-subtitle">
-          Спектакль с участием детей и подростков. Минимум пафоса, максимум живых эмоций.
+        <h2 class="section-title">Два направления</h2>
+        <p class="section-intro">
+          «Эмоцика» — это одновременно независимый театр и студия с киносъёмками
+          для детей и подростков.
         </p>
 
-        <article class="afisha-card card card-hover">
-          <div class="afisha-date-strip">
-            <div class="afisha-date-day">12</div>
-            <div class="afisha-date-month">дек</div>
-            <div class="afisha-date-time">18:00</div>
-          </div>
-
-          <div class="afisha-poster placeholder-poster"></div>
-
-          <div class="afisha-content">
-            <div class="afisha-label">Ближайший показ</div>
-            <h3 class="afisha-title">«Любовь у сливного бачка»</h3>
-            <p class="afisha-tagline">
-              Абсурдная комедия о взрослых темах, рассказанная детским языком.
+        <div class="tracks-grid">
+          <article class="track-card track-card-theatre">
+            <h3 class="track-title">Театр «Эмоцика»</h3>
+            <p class="track-text">
+              Премьерные спектакли, новогодние программы и семейные показы
+              с участием профессиональных актёров и наших студийцев.
             </p>
-            <p class="afisha-meta">
-              Площадка: Дом культуры «…» (адрес уточняется).
+            <ul class="track-list">
+              <li>репертуарные спектакли для детей и подростков;</li>
+              <li>новогодние сказки и квесты;</li>
+              <li>ограниченный камерный зал, хороший обзор.</li>
+            </ul>
+            <a href="#afisha" class="track-link">Смотреть спектакли</a>
+          </article>
+
+          <article class="track-card track-card-school">
+            <h3 class="track-title">Студия и киношкола</h3>
+            <p class="track-text">
+              Занятия по актёрскому мастерству, сценической речи и киносъёмкам
+              для детей от 4 лет до подростков.
             </p>
-            <div class="afisha-actions">
-              <a href="#play" class="btn btn-ghost">Подробнее</a>
-              <a href="#" class="btn btn-primary">Купить билет</a>
+            <ul class="track-list">
+              <li>регулярные занятия и мастер-классы;</li>
+              <li>участие в съёмках короткометражных фильмов;</li>
+              <li>подготовка к фестивалям и конкурсам.</li>
+            </ul>
+            <button type="button"
+                    class="track-link track-link-button"
+                    data-scroll-to="contacts-form">
+              Смотреть программы студии
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="afisha" class="section section-afisha reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title">Ближайшие события</h2>
+        <p class="section-subtitle">
+          Премьеры, новогодние программы и специальные показы в театре «Эмоцика».
+        </p>
+
+        <div class="afisha-grid">
+          <article class="afisha-card card card-hover">
+            <div class="afisha-layout afisha-layout--premiere">
+              <div class="afisha-date-strip">
+                <div class="afisha-date-day">12</div>
+                <div class="afisha-date-month">дек</div>
+                <div class="afisha-date-time">18:00</div>
+              </div>
+
+              <div class="afisha-poster placeholder-poster"></div>
+
+              <div class="afisha-content">
+                <div class="afisha-label">Ближайший показ</div>
+                <h3 class="afisha-title">«Любовь у сливного бачка»</h3>
+                <p class="afisha-tagline">
+                  Абсурдная комедия о любви, дружбе и честности, созданная вместе с подростками.
+                </p>
+                <p class="afisha-meta">
+                  Ближайший показ: 12 декабря · Дом культуры (площадка уточняется)
+                </p>
+                <div class="afisha-actions">
+                  <a href="#play" class="btn btn-ghost">Подробнее о спектакле</a>
+                  <a href="#" class="btn btn-primary">Купить билет</a>
+                </div>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+
+          <article class="afisha-card card card-hover">
+            <div class="afisha-layout">
+              <div class="afisha-poster afisha-poster--snow">
+                <div class="afisha-poster-label">Новогодняя программа</div>
+              </div>
+              <div class="afisha-content">
+                <div class="afisha-tag">4–12 лет • квест + спектакль</div>
+                <h3 class="afisha-title">«Снежная королева»</h3>
+                <p class="afisha-desc">
+                  Новогоднее приключение для классов и семей: квест по станциям,
+                  спектакль в камерном зале, Дед Мороз, фотосессия и подарки.
+                </p>
+                <ul class="afisha-meta">
+                  <li><strong>Форматы:</strong> для классов и индивидуальных зрителей</li>
+                  <li><strong>Продолжительность:</strong> 1,5–2 часа</li>
+                </ul>
+                <div class="afisha-actions">
+                  <a href="#" class="btn btn-primary">Купить билеты</a>
+                  <button type="button"
+                          class="btn btn-secondary"
+                          data-scroll-to="contacts-form">
+                    Заявка от класса
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="afisha-card afisha-card--soon card card-hover">
+            <div class="afisha-layout">
+              <div class="afisha-poster afisha-poster--soon">
+                <div class="afisha-poster-label">Скоро</div>
+              </div>
+              <div class="afisha-content">
+                <div class="afisha-tag">Новая постановка</div>
+                <h3 class="afisha-title">Скоро новая премьера</h3>
+                <p class="afisha-desc">
+                  Готовим следующую историю для детей и подростков. Следите за
+                  новостями в наших соцсетях и на сайте.
+                </p>
+                <div class="afisha-actions">
+                  <a href="#contacts" class="btn btn-ghost">
+                    Подписаться на новости
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="section section-why reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title">Почему именно «Эмоцика»</h2>
+        <p class="section-subtitle">
+          Мы соединяем профессиональный театр и тёплую атмосферу студии,
+          где каждый ребёнок получает свою роль — на сцене и в кадре.
+        </p>
+
+        <div class="why-grid">
+          <article class="why-item">
+            <h3 class="why-title">Профессиональные режиссёры и актёры</h3>
+            <p class="why-text">
+              Спектакли ставят практикующие режиссёры и актёры (в том числе
+              режиссёр Евгений Баранов и основатель студии Елена Молодан).
+            </p>
+          </article>
+
+          <article class="why-item">
+            <h3 class="why-title">Камерный зал и живая атмосфера</h3>
+            <p class="why-text">
+              Небольшой зал создаёт близкий контакт со сценой: дети не «где-то далеко»,
+              а прямо внутри действия.
+            </p>
+          </article>
+
+          <article class="why-item">
+            <h3 class="why-title">Реальные спектакли и киносъёмки</h3>
+            <p class="why-text">
+              Студийцы не только занимаются — они выходят на сцену и снимаются
+              в фильмах студии, получают живое портфолио.
+            </p>
+          </article>
+
+          <article class="why-item">
+            <h3 class="why-title">Фестивали и награды</h3>
+            <p class="why-text">
+              Проекты студии отмечены на фестивалях и конкурсах, а спектакль
+              «Кошкин дом» получил Гран-при.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 

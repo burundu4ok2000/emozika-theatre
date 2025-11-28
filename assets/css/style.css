@@ -5,6 +5,7 @@
 :root {
   --color-bg: #FFF4E6;
   --color-text: #333333;
+  --color-text-muted: #6d5c52;
   --color-accent: #FFCC80;
   --color-accent-2: #FFD1DC;
   --color-muted: #C5E1A5;
@@ -459,13 +460,112 @@ img {
   opacity: 0.9;
 }
 
-.afisha-card {
+/* ===== DUAL TRACKS (ТЕАТР / СТУДИЯ) ===== */
+
+.section-tracks {
+  background: #fff8f2;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.tracks-grid {
   display: grid;
-  grid-template-columns: auto 260px minmax(0, 1fr);
-  gap: 20px;
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.track-card {
+  border-radius: 18px;
+  padding: 20px 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.track-card-theatre {
+  background: radial-gradient(circle at top left, #ffe5cf 0, #ffffff 55%);
+}
+
+.track-card-school {
+  background: radial-gradient(circle at top right, #ffefd8 0, #ffffff 60%);
+}
+
+.track-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.track-text {
+  margin: 4px 0 6px;
+  font-size: 14px;
+}
+
+.track-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.track-list li + li {
+  margin-top: 4px;
+}
+
+.track-link,
+.track-link-button {
+  align-self: flex-start;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  color: var(--color-text, #4b2c25);
+  cursor: pointer;
+}
+
+.track-link:hover,
+.track-link-button:hover {
+  background: #4b2c25;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .tracks-grid,
+  .why-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.afisha-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.afisha-card {
   padding: 20px 24px;
   border-radius: 24px;
+}
+
+.afisha-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.afisha-layout--premiere {
+  grid-template-columns: auto 220px minmax(0, 1fr);
 }
 
 .afisha-date-strip {
@@ -498,6 +598,8 @@ img {
 .afisha-poster {
   border-radius: 20px;
   overflow: hidden;
+  min-height: 240px;
+  position: relative;
 }
 
 .placeholder-poster {
@@ -508,6 +610,32 @@ img {
     #FFF4E6 14px,
     #FFF4E6 28px
   );
+}
+
+.afisha-poster--snow {
+  background: radial-gradient(circle at top, #e3f3ff 0, #ffffff 60%);
+}
+
+.afisha-poster--soon {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff7e0,
+    #fff7e0 6px,
+    #ffe4bd 6px,
+    #ffe4bd 12px
+  );
+}
+
+.afisha-poster-label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b2c25;
 }
 
 .afisha-content {
@@ -532,18 +660,86 @@ img {
   margin: 0 0 8px;
 }
 
+.afisha-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a6a50;
+  margin-bottom: 4px;
+}
+
 .afisha-tagline {
   margin-bottom: 10px;
 }
 
+.afisha-desc {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: #4b2c25;
+}
+
+.afisha-card--soon .afisha-desc {
+  font-style: italic;
+}
+
 .afisha-meta {
-  margin-bottom: 16px;
+  margin: 0 0 16px;
   font-size: 14px;
   color: #666;
+  padding-left: 0;
+  list-style: none;
+}
+
+.afisha-meta li + li {
+  margin-top: 4px;
+}
+
+.afisha-meta strong {
+  color: #4b2c25;
 }
 
 .afisha-actions {
   margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ===== WHY US ===== */
+
+.section-why {
+  background: #fdf7ff;
+}
+
+.section-why .section-subtitle {
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.why-item {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+.why-title {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.why-text {
+  font-size: 14px;
+  margin: 0;
+  color: var(--color-text-muted);
 }
 
 .play-facts {
@@ -1012,8 +1208,10 @@ h1, h2, h3 {
 }
 
 @media (max-width: 900px) {
-  .afisha-card {
-    grid-template-columns: 1fr;
+  .afisha-layout,
+  .afisha-layout--premiere {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .afisha-date-strip {
@@ -1076,7 +1274,7 @@ h1, h2, h3 {
   }
 
   .afisha-poster {
-    height: 200px;
+    min-height: 200px;
   }
 
   .footer-inner {
