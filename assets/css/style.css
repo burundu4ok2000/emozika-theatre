@@ -1099,6 +1099,95 @@ img {
   font-size: 14px;
 }
 
+/* ===== PEOPLE ===== */
+
+.section-people {
+  background: #fdf5f0;
+}
+
+.people-block + .people-block {
+  margin-top: 40px;
+}
+
+.people-subtitle {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.people-intro {
+  max-width: 560px;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.people-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.person-card {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06);
+}
+
+.person-card--compact {
+  grid-template-columns: 64px minmax(0, 1fr);
+  padding: 14px 16px;
+}
+
+.person-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  background: #f1e2d8;
+  overflow: hidden;
+}
+
+.person-card--compact .person-photo {
+  width: 64px;
+  height: 64px;
+}
+
+.person-name {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.person-role {
+  margin: 0 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.person-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.person-photo--elena,
+.person-photo--baranov,
+.person-photo--teacher,
+.person-photo--student1,
+.person-photo--student2 {
+  background-size: cover;
+  background-position: center;
+}
+
 /* ===== WHY US ===== */
 
 .section-why {
@@ -1631,6 +1720,11 @@ h1, h2, h3 {
 
   .studio-card {
     padding: 20px 22px;
+  }
+
+  .person-card,
+  .person-card--compact {
+    grid-template-columns: 64px minmax(0, 1fr);
   }
 }
 
