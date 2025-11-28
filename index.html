@@ -14,10 +14,15 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">Эмоцика</div>
+      <div class="logo-badge">
+        <span class="logo-mark">Э</span>
+        <span class="logo-text">Театр «Эмоцика»</span>
+      </div>
+
       <nav class="main-nav">
         <a href="#afisha">Афиша</a>
         <a href="#about">О театре</a>
+        <a href="#play">О спектакле</a>
         <a href="#gallery">Галерея</a>
         <a href="#contacts">Контакты</a>
       </nav>
@@ -29,13 +34,29 @@
       <div class="hero-overlay">
         <div class="container hero-inner">
           <div class="hero-content">
+            <div class="hero-badges">
+              <span class="badge badge-primary">Премьера сезона</span>
+              <span class="badge badge-soft">Спектакль 6+</span>
+            </div>
+
             <p class="hero-tagline">Детский театр и студия «Эмоцика», Санкт-Петербург</p>
             <h1 class="hero-title">«Любовь у сливного бачка»</h1>
-            <p class="hero-desc">Абсурдная история о самом главном — глазами детей. Подходит для зрителей 6+.</p>
-            <p class="hero-meta">Ближайший показ: 12 декабря, 18:00 · Дом культуры (площадка уточняется)</p>
+            <p class="hero-desc">
+              Абсурдная история о самом главном — глазами детей. Живой спектакль, после которого хочется говорить.
+            </p>
+            <p class="hero-meta">Ближайший показ: 12 декабря · Дом культуры (площадка уточняется)</p>
+
             <div class="hero-actions">
               <a href="#" class="btn btn-primary">Купить билет</a>
               <a href="#play" class="btn btn-ghost">Подробнее о спектакле</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-photo-placeholder">
+              Постер спектакля<br>(потом тут будет фото)
             </div>
           </div>
         </div>
@@ -46,21 +67,33 @@
       <div class="container">
         <h2 class="section-title">Эмоцика представляет</h2>
         <p class="section-subtitle">
-          Современный спектакль с участием детей и подростков. Минимум пафоса, максимум живых эмоций.
+          Спектакль с участием детей и подростков. Минимум пафоса, максимум живых эмоций.
         </p>
 
-        <div class="afisha-card">
+        <article class="afisha-card card-hover">
+          <div class="afisha-date-strip">
+            <div class="afisha-date-day">12</div>
+            <div class="afisha-date-month">дек</div>
+            <div class="afisha-date-time">18:00</div>
+          </div>
+
           <div class="afisha-poster placeholder-poster"></div>
+
           <div class="afisha-content">
+            <div class="afisha-label">Ближайший показ</div>
             <h3 class="afisha-title">«Любовь у сливного бачка»</h3>
-            <p class="afisha-tagline">Абсурдная комедия о взрослых темах детским языком.</p>
-            <p class="afisha-meta">Ближайший показ: 12 декабря, 18:00 · Дом культуры (площадка уточняется)</p>
+            <p class="afisha-tagline">
+              Абсурдная комедия о взрослых темах, рассказанная детским языком.
+            </p>
+            <p class="afisha-meta">
+              Площадка: Дом культуры «…» (адрес уточняется).
+            </p>
             <div class="afisha-actions">
               <a href="#play" class="btn btn-ghost">Подробнее</a>
               <a href="#" class="btn btn-primary">Купить билет</a>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -68,11 +101,42 @@
       <div class="container two-column">
         <div class="two-column-text">
           <h2 class="section-title">О театре «Эмоцика»</h2>
-          <p>Здесь будет 2–3 абзаца о театре: история, миссия, подход к детям. Пока — заглушка.</p>
-          <p>Важно подчеркнуть, что это живая театральная студия, а не просто «кружок».</p>
+          <p>
+            Здесь будет 2–3 абзаца о студии: как появилась, чем отличается от обычных кружков, чем живёт.
+          </p>
+
+          <div class="values-chips">
+            <span class="chip">Живой контакт</span>
+            <span class="chip">Без пафоса</span>
+            <span class="chip">Через игру к мастерству</span>
+          </div>
+
+          <div class="about-timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <strong>2019</strong> — старт студии «Эмоция».
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <strong>2021</strong> — первые спектакли на большой сцене.
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <strong>2025</strong> — премьера «Любовь у сливного бачка».
+              </div>
+            </div>
+          </div>
         </div>
+
         <div class="two-column-media">
-          <div class="media-card placeholder-media"></div>
+          <div class="media-card placeholder-media">
+            Фото с репетиции<br>(placeholder)
+          </div>
         </div>
       </div>
     </section>
@@ -81,15 +145,44 @@
       <div class="container two-column">
         <div class="two-column-text">
           <h2 class="section-title">О спектакле «Любовь у сливного бачка»</h2>
-          <p><strong>Сюжет:</strong> здесь будет короткий синопсис в 3–5 предложениях.</p>
-          <p><strong>Жанр:</strong> абсурдная комедия с элементами ...</p>
-          <p><strong>Длительность:</strong> 45 минут</p>
-          <p><strong>Возраст:</strong> 6+</p>
-          <p><strong>Постановка:</strong> режиссёр ..., педагоги ...</p>
-          <a href="#" class="btn btn-primary">Купить билет</a>
+
+          <p>
+            Здесь будет синопсис в 3–5 предложениях: о чём спектакль, что в нём любят дети и родители.
+          </p>
+
+          <div class="play-facts">
+            <div class="play-fact">
+              <span class="play-fact-label">Жанр</span>
+              <span class="play-fact-value">Абсурдная комедия</span>
+            </div>
+            <div class="play-fact">
+              <span class="play-fact-label">Длительность</span>
+              <span class="play-fact-value">45 минут</span>
+            </div>
+            <div class="play-fact">
+              <span class="play-fact-label">Возраст</span>
+              <span class="play-fact-value">6+</span>
+            </div>
+            <div class="play-fact">
+              <span class="play-fact-label">В ролях</span>
+              <span class="play-fact-value">ученики студии «Эмоцика»</span>
+            </div>
+          </div>
+
+          <blockquote class="play-quote">
+            «Это спектакль, после которого дети сами начинают задавать взрослые вопросы.
+            И это лучше любого урока “о важном”.»
+          </blockquote>
+
+          <div class="play-cta">
+            <a href="#" class="btn btn-primary">Купить билет</a>
+          </div>
         </div>
+
         <div class="two-column-media">
-          <div class="media-card placeholder-media"></div>
+          <div class="media-card placeholder-media">
+            Крупное фото со спектакля<br>(placeholder)
+          </div>
         </div>
       </div>
     </section>
@@ -98,21 +191,17 @@
       <div class="container">
         <h2 class="section-title">Цифры и факты</h2>
         <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number">5</div>
+          <div class="stat-item card-hover">
+            <div class="stat-number">5+</div>
             <div class="stat-label">лет студии</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item card-hover">
             <div class="stat-number">200+</div>
-            <div class="stat-label">юных актёров</div>
+            <div class="stat-label">детей участвовали в постановках</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">12</div>
-            <div class="stat-label">постановок</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">30</div>
-            <div class="stat-label">гастрольных поездок</div>
+          <div class="stat-item card-hover">
+            <div class="stat-number">10</div>
+            <div class="stat-label">спектаклей поставлено</div>
           </div>
         </div>
       </div>
@@ -121,14 +210,14 @@
     <section id="gallery" class="section section-gallery">
       <div class="container">
         <h2 class="section-title">Галерея</h2>
-        <p class="section-subtitle">Несколько кадров с репетиций и спектаклей.</p>
+        <p class="section-subtitle">Несколько кадров с репетиций и спектаклей (пока заглушки).</p>
+
         <div class="gallery-grid">
-          <div class="gallery-item placeholder-tile"></div>
-          <div class="gallery-item placeholder-tile"></div>
-          <div class="gallery-item placeholder-tile"></div>
-          <div class="gallery-item placeholder-tile"></div>
-          <div class="gallery-item placeholder-tile"></div>
-          <div class="gallery-item placeholder-tile"></div>
+          <div class="gallery-item gallery-item-tall">Фото 1</div>
+          <div class="gallery-item">Фото 2</div>
+          <div class="gallery-item">Фото 3</div>
+          <div class="gallery-item gallery-item-wide">Фото 4</div>
+          <div class="gallery-item">Фото 5</div>
         </div>
       </div>
     </section>
@@ -137,55 +226,80 @@
       <div class="container">
         <h2 class="section-title">Документы</h2>
         <p class="section-subtitle">
-          Здесь будут лицензия и обязательные локальные акты для проверяющих и внимательных родителей.
+          Лицензия и обязательные локальные акты. Здесь родитель и проверяющий быстро найдут всё нужное.
         </p>
-        <div class="docs-list">
-          <div class="doc-card">
+
+        <div class="docs-grid">
+          <article class="doc-card card-hover">
             <div class="doc-icon">PDF</div>
-            <div class="doc-info">
-              <p class="doc-title">Лицензия на образовательную деятельность</p>
-              <p class="doc-meta">Обязательный документ, подтверждающий легальность деятельности.</p>
+            <div class="doc-text">
+              <h3 class="doc-title">Лицензия на образовательную деятельность</h3>
+              <p class="doc-desc">Официальный документ о праве вести образовательные программы.</p>
             </div>
-          </div>
-          <div class="doc-card">
+          </article>
+
+          <article class="doc-card card-hover">
             <div class="doc-icon">PDF</div>
-            <div class="doc-info">
-              <p class="doc-title">Положение о защите персональных данных</p>
-              <p class="doc-meta">Подробные правила обработки информации учениц и учеников.</p>
+            <div class="doc-text">
+              <h3 class="doc-title">Положение о персональных данных</h3>
+              <p class="doc-desc">Как мы обрабатываем и защищаем данные детей и родителей.</p>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="contacts" class="section section-contacts">
-      <div class="container two-column">
-        <div class="two-column-text">
-          <h2 class="section-title">Контакты</h2>
-          <p><strong>Адрес площадки:</strong> Санкт-Петербург, ...</p>
-          <p><strong>Адрес студии:</strong> Санкт-Петербург, ...</p>
-          <p><strong>Телефон:</strong> <a href="tel:+7...">+7 ...</a></p>
-          <p><strong>Email:</strong> <a href="mailto:...">...</a></p>
-          <p><strong>Соцсети:</strong> <a href="#">VK</a> · <a href="#">Telegram</a></p>
+      <div class="container">
+        <div class="contacts-panel card-hover">
+          <div class="contacts-main">
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-subtitle">
+              Задайте вопрос, уточните детали спектакля или запишите ребёнка в студию.
+            </p>
+
+            <p><strong>Телефон:</strong> <a href="tel:+7...">+7 ...</a></p>
+            <p><strong>Email:</strong> <a href="mailto:...">...</a></p>
+
+            <div class="contacts-actions">
+              <a href="#" class="btn btn-primary">Написать в Telegram</a>
+            </div>
+          </div>
+
+          <div class="contacts-socials">
+            <p class="contacts-socials-title">Мы в соцсетях</p>
+            <div class="socials-row">
+              <a href="#" class="social-pill">VK</a>
+              <a href="#" class="social-pill">Telegram</a>
+            </div>
+          </div>
         </div>
-        <div class="two-column-media">
-          <div class="media-card placeholder-map"></div>
+
+        <div class="contacts-map card-hover">
+          <div class="map-placeholder">
+            Здесь будет карта площадки (вставим iframe Яндекс.Карт позже)
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="section site-footer">
+  <footer class="site-footer">
     <div class="container footer-inner">
-      <div>© Театр и студия «Эмоцика», 2025</div>
-      <div class="footer-links">
+      <div class="footer-left">
+        <div>© Театр и студия «Эмоцика», 2025</div>
+        <div class="footer-note">Сделано с любовью к детям и театру.</div>
+      </div>
+
+      <div class="footer-center">
         <a href="#docs">Документы</a>
         <span>·</span>
         <a href="#">Политика конфиденциальности</a>
       </div>
-      <div class="footer-dev">
-        Сайт разработан Станиславом Бурундуковым
+
+      <div class="footer-right">
+        <span class="footer-dev">Сайт разработан Станиславом Бурундуковым</span>
       </div>
     </div>
   </footer>
