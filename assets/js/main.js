@@ -3,8 +3,6 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Emozika site JS loaded");
-
   const prefersReducedMotion =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
