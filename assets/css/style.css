@@ -1378,96 +1378,111 @@ img {
 
 /* ===== FILMS ===== */
 
+/* Фильмы и награды: social proof */
+
 .section-films {
-  padding-top: 48px;
-  padding-bottom: 48px;
+  background: radial-gradient(
+    circle at top left,
+    rgba(213, 154, 255, 0.18),
+    rgba(249, 244, 255, 1)
+  );
 }
 
-.section-films h2 {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.section-films .section-intro {
-  max-width: 640px;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 24px;
+.section-films .section-header {
+  text-align: left;
+  margin-bottom: 32px;
 }
 
 .films-layout {
-  display: grid;
-  gap: 24px;
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.films-column h3 {
+.films-column {
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 16px 40px rgba(28, 5, 63, 0.12);
+  padding: 24px 20px 20px;
+}
+
+.films-column-title {
+  font-family: var(--font-heading);
   font-size: 18px;
-  margin-bottom: 8px;
+  margin: 0 0 10px;
 }
 
 .films-text {
   font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 12px;
+  color: #4b2d5c;
+  margin: 0 0 10px;
 }
 
 .films-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
+  padding-left: 18px;
   font-size: 14px;
-  line-height: 1.5;
 }
 
-.films-meta li + li {
-  margin-top: 6px;
+.films-meta li {
+  margin-bottom: 4px;
 }
 
-.films-actions .btn {
-  width: fit-content;
+.films-actions {
+  margin-top: 8px;
 }
 
 .films-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .films-item {
   padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: rgba(255, 255, 255, 0.9);
-  margin-bottom: 10px;
+  border-radius: 16px;
+  background: rgba(122, 47, 180, 0.03);
+  border: 1px dashed rgba(122, 47, 180, 0.18);
 }
 
 .films-item-title {
+  font-family: var(--font-heading);
   font-size: 15px;
   margin: 0 0 4px;
 }
 
 .films-item-meta {
+  margin: 0 0 2px;
   font-size: 13px;
-  margin: 0 0 4px;
-  color: var(--color-text-muted, #777);
+  color: var(--color-text-muted);
 }
 
 .films-item-award {
-  font-size: 13px;
   margin: 0;
+  font-size: 13px;
 }
 
 .films-summary {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0;
-  color: var(--color-text-muted, #666);
+  margin: 20px auto 0;
+  max-width: 720px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .films-layout {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .films-column {
+    padding: 26px 24px 22px;
   }
 }
 
