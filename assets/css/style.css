@@ -19,6 +19,10 @@
 
   --font-main: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --hand-underline-width: 140px;
+  --hand-underline-height: 14px;
+  --hand-underline-opacity: 0.5;
 }
 
 html {
@@ -78,6 +82,32 @@ img {
   letter-spacing: 0.03em;
   color: var(--color-brand-dark);
   margin: 0 0 16px;
+}
+
+.section-title--handdrawn {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.section-title--handdrawn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(6px);
+  width: var(--hand-underline-width);
+  height: var(--hand-underline-height);
+  background: url("../img/ui/underline-hand.svg") center/contain no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* привязка к уже существующему reveal-on-scroll */
+.reveal-on-scroll.is-visible .section-title--handdrawn::after {
+  opacity: var(--hand-underline-opacity);
+  transform: translateX(-50%) translateY(0);
 }
 
 .section-intro,
@@ -2905,6 +2935,10 @@ h1, h2, h3 {
 
   .section-card .section-inner {
     padding: 24px 18px;
+  }
+
+  :root {
+    --hand-underline-width: 110px;
   }
 }
 
