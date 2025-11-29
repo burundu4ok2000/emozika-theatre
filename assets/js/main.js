@@ -87,30 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ======================================
-  // 4. Связка CTA → форма контактов
-  // ======================================
-
-  const ctaButtons = document.querySelectorAll('[data-scroll-to="contacts-form"]');
-  const contactsForm = document.getElementById("contacts-form");
-  const phoneInput = document.getElementById("contact-phone");
-
-  if (ctaButtons.length && contactsForm) {
-    ctaButtons.forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        event.preventDefault();
-        contactsForm.scrollIntoView({ behavior: "smooth", block: "start" });
-
-        setTimeout(() => {
-          if (phoneInput) {
-            phoneInput.focus();
-          }
-        }, 600);
-      });
-    });
-  }
-
-  // ======================================
-  // 5. Общая обработка data-scroll-to
+  // 4. Общая обработка data-scroll-to
   // ======================================
 
   const scrollLinks = document.querySelectorAll("[data-scroll-to]");
@@ -118,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (scrollLinks.length) {
     scrollLinks.forEach((link) => {
       const targetId = link.getAttribute("data-scroll-to");
-      if (!targetId || targetId === "contacts-form") return;
+      if (!targetId) return;
 
       link.addEventListener("click", (event) => {
         const target = document.getElementById(targetId);
@@ -129,4 +106,21 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // ======================================
+  // 6. FAQ toggle
+  // ======================================
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".faq-question");
+    if (!btn) return;
+
+    const item = btn.parentElement;
+    const answer = item.querySelector(".faq-answer");
+    if (!answer) return;
+
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", (!expanded).toString());
+    answer.classList.toggle("open");
+  });
 });
