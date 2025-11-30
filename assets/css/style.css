@@ -2802,37 +2802,69 @@ body.is-lightbox-open {
   }
 }
 
-/* ===== PEOPLE ===== */
+/* ===== PEOPLE (ЛЮДИ ТЕАТРА) ===== */
 
 .section-people {
-  padding-top: 48px;
-  padding-bottom: 48px;
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
-.section-people h2 {
-  font-size: 26px;
-  margin-bottom: 10px;
-  color: var(--color-brand-dark);
+.section-people .section-header {
+  max-width: 720px;
+  margin: 0 auto 24px auto;
 }
 
 .section-people .section-intro {
   max-width: 720px;
   font-size: 14px;
   line-height: 1.6;
-  margin-bottom: 24px;
   color: var(--color-text-muted);
+}
+
+.people-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.people-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.people-filter {
+  border-radius: 999px;
+  border: 1px solid rgba(122, 47, 180, 0.25);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 14px;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease-out,
+    color 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+.people-filter.is-active {
+  background: linear-gradient(135deg, #7a2fb4, #ff6ac1);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 12px 30px rgba(122, 47, 180, 0.5);
+}
+
+.people-filter:focus-visible {
+  outline: 2px solid #ffb6ff;
+  outline-offset: 2px;
 }
 
 .people-layout {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-}
-
-.people-group h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
-  color: var(--color-brand-dark);
+  gap: 24px;
 }
 
 .people-grid {
@@ -2842,40 +2874,74 @@ body.is-lightbox-open {
 }
 
 .person-card {
-  background: var(--color-surface);
-  border-radius: 20px;
-  padding: 18px 16px;
-  box-shadow: 0 14px 32px rgba(28, 5, 63, 0.12);
-  border: 1px solid rgba(122, 47, 180, 0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
 }
 
-.people-grid.people-grid--actors .person-card {
-  background: linear-gradient(
-    135deg,
-    rgba(213, 154, 255, 0.12),
-    rgba(255, 255, 255, 1)
-  );
+.person-card.card-luxe {
+  padding: 0;
+}
+
+.person-photo {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(122, 47, 180, 0.1);
+}
+
+.person-photo img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.person-content {
+  padding: 16px 18px 18px;
 }
 
 .person-name {
+  margin: 0 0 6px;
   font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 4px;
+  line-height: 1.3;
   color: var(--color-brand-dark);
 }
 
 .person-role {
+  margin: 0 0 10px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-text-muted, #666666);
+  color: var(--color-text-muted);
+}
+
+.person-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-bottom: 10px;
 }
 
+.person-tag {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1.3;
+  background: rgba(122, 47, 180, 0.06);
+  border: 1px solid rgba(122, 47, 180, 0.18);
+  color: var(--color-brand-dark);
+}
+
 .person-bio {
-  font-size: 14px;
-  line-height: 1.6;
   margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.person-card--collapsed {
+  display: none;
 }
 
 .people-note {
@@ -2886,13 +2952,50 @@ body.is-lightbox-open {
   color: var(--color-text-muted);
 }
 
+.people-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 47, 180, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease-out,
+    border-color 0.15s ease-out,
+    box-shadow 0.15s ease-out;
+}
+
+.people-toggle:hover {
+  border-color: rgba(122, 47, 180, 0.8);
+  box-shadow: 0 10px 28px rgba(8, 2, 26, 0.15);
+}
+
 @media (min-width: 768px) {
+  .section-people {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
   .people-layout {
-    gap: 40px;
+    gap: 28px;
+  }
+
+  .person-photo img {
+    height: 260px;
   }
 
   .people-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .people-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
