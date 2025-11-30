@@ -1964,6 +1964,23 @@ function initAbonementsSection() {
     return;
   }
 
+  const contactsSection = document.getElementById('contacts');
+
+  const scrollToContacts = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    if (!contactsSection) {
+      return;
+    }
+
+    contactsSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   // Рендер карточек из JSON
   loadAbonementsData().then((abonements) => {
     if (!Array.isArray(abonements) || abonements.length === 0) {
@@ -1971,21 +1988,21 @@ function initAbonementsSection() {
     }
 
     renderAbonementsGrid(gridRoot, abonements);
+
+    // Клик по карточке героя ведёт туда же, куда и главный CTA
+    const heroCard = gridRoot.querySelector('.abonement-card--hero');
+
+    if (heroCard) {
+      heroCard.addEventListener('click', scrollToContacts);
+    }
   });
 
-  // Главный CTA: прокрутка к контактам
-  const contactsSection = document.getElementById('contacts');
+  // Кнопки CTA внизу блока абонементов
   const ctaButtons = document.querySelectorAll('[data-scroll-to="contacts"]');
 
-  if (contactsSection && ctaButtons.length) {
+  if (ctaButtons.length) {
     ctaButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        contactsSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      });
+      button.addEventListener('click', scrollToContacts);
     });
   }
 }

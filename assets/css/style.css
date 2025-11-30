@@ -1009,6 +1009,7 @@ img {
   box-shadow:
     0 0 0 1px rgba(122, 47, 180, 0.2),
     0 20px 48px rgba(29, 19, 92, 0.24);
+  cursor: pointer;
 }
 
 .abonement-tagline {
@@ -1051,6 +1052,7 @@ img {
 
 .abonement-list li {
   margin-bottom: 4px;
+  line-height: 1.5;
 }
 
 .abonement-bottom {
@@ -1092,7 +1094,7 @@ img {
 /* Абонементы — блок с главным CTA */
 
 .section-abonements-cta {
-  margin-top: 2.5rem;
+  margin-top: 2.75rem;
   padding: 1.75rem 1.5rem;
   border-radius: 1.25rem;
   background: var(--section-abonements-cta-bg, rgba(20, 8, 40, 0.98));
@@ -1159,7 +1161,7 @@ img {
   margin-top: 0.75rem;
   font-size: 0.85rem;
   line-height: 1.6;
-  color: var(--muted-foreground, rgba(255, 255, 255, 0.75));
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .abonements-cta-footnote strong {
