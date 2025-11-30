@@ -3221,24 +3221,36 @@ body.is-lightbox-open {
 
 .awards-strip {
   margin-bottom: 2.5rem;
+}
+
+/* окно, внутри которого всё крутится */
+.awards-strip-viewport {
+  position: relative;
   overflow: hidden;
 }
 
+/* дорожка бейджей */
 .awards-strip-inner {
   display: flex;
   gap: 1rem;
-  overflow-x: auto;
   padding: 0.5rem 0.25rem 0.75rem;
-  scroll-snap-type: x mandatory;
 }
 
-.awards-strip-inner::-webkit-scrollbar {
-  height: 6px;
-}
+/* мобилки: ручной горизонтальный скролл */
+@media (max-width: 1023px) {
+  .awards-strip-inner {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
 
-.awards-strip-inner::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
+  .awards-strip-inner::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .awards-strip-inner::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+  }
 }
 
 /* бейджи топ-наград (по одному на ленте) */
@@ -3445,12 +3457,9 @@ body.is-lightbox-open {
 
 /* Автоскролл ленты наград для десктопа */
 @media (min-width: 1024px) {
-  .awards-strip--auto {
-    overflow: hidden;
-  }
-
   .awards-strip--auto .awards-strip-inner {
     animation: awards-strip-scroll 40s linear infinite;
+    will-change: transform;
   }
 
   .awards-strip--auto:hover .awards-strip-inner {
