@@ -941,8 +941,7 @@ img {
   white-space: nowrap;
 }
 
-.track-link,
-.track-link-button {
+.track-link {
   align-self: flex-start;
   font-size: 13px;
   border-radius: 999px;
@@ -954,11 +953,15 @@ img {
   cursor: pointer;
 }
 
-.track-link:hover,
-.track-link-button:hover {
+.track-link:hover {
   background: rgba(122, 47, 180, 0.08);
   border-color: rgba(122, 47, 180, 0.4);
   color: var(--color-brand-dark);
+}
+
+/* кнопка внутри блока Tracks – уже .btn, только даём отступ */
+.track-link-button {
+  margin-top: 14px;
 }
 
 .tracks-bridge {
@@ -3828,10 +3831,6 @@ body.is-lightbox-open {
 /* Детальная панель выбранного фильма */
 
 .films-detail {
-  border-radius: 24px;
-  background: var(--color-surface);
-  box-shadow: 0 18px 48px rgba(27, 5, 56, 0.16);
-  padding: 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -3966,7 +3965,6 @@ body.is-lightbox-open {
     flex-direction: row;
     align-items: stretch;
     gap: 24px;
-    padding: 22px 22px 24px;
   }
 
   .films-detail-video {
