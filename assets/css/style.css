@@ -142,10 +142,10 @@ img {
 .section-intro,
 .section-subtitle {
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--color-text-muted);
   max-width: 640px;
-  margin: 0 auto 0;
+  margin: 0 auto 24px;
 }
 
 /* Чуть более крупное вступление для важных блоков (если используешь) */
@@ -800,14 +800,6 @@ img {
   background: var(--color-bg-warm);
 }
 
-.section-intro {
-  max-width: 640px;
-  margin: 0 auto 32px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-}
-
 .section-tracks .section-kicker {
   text-align: center;
   font-size: 11px;
@@ -1007,12 +999,6 @@ img {
   margin-bottom: 6px;
 }
 
-.section-abonements .section-intro {
-  max-width: 720px;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .abonements-grid {
   display: grid;
   gap: 20px;
@@ -1187,14 +1173,6 @@ img {
 
 .section-abonements-cta-secondary {
   padding-inline: 1.25rem;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: inherit;
-}
-
-.section-abonements-cta-secondary:hover,
-.section-abonements-cta-secondary:focus-visible {
-  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .section-abonements-cta-phone {
@@ -1998,14 +1976,6 @@ body.is-lightbox-open {
   margin-bottom: 8px;
 }
 
-.section-snow-queen .section-intro {
-  max-width: 720px;
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0 0 20px;
-  text-align: left;
-}
-
 /* чипы-мета под заголовком */
 
 .snow-meta-main {
@@ -2375,14 +2345,6 @@ body.is-lightbox-open {
 .section-studio h2 {
   font-size: 24px;
   margin-bottom: 8px;
-}
-
-.section-studio .section-intro {
-  max-width: 640px;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0 0 24px;
-  text-align: left;
 }
 
 /* Факты в хедере блока "О театре и студии" */
@@ -3208,13 +3170,6 @@ body.is-lightbox-open {
   margin-bottom: 10px;
 }
 
-.section-studio .section-intro {
-  max-width: 720px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-}
-
 /* Две главные «карточки» — слева направления, справа результат */
 .section-studio .studio-layout {
   align-items: stretch;
@@ -4003,13 +3958,6 @@ body.is-lightbox-open {
   margin: 0 auto 24px auto;
 }
 
-.section-people .section-intro {
-  max-width: 720px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-}
-
 .people-shell {
   max-width: 1120px;
   margin: 0 auto;
@@ -4448,14 +4396,6 @@ body.is-lightbox-open {
 .section-facts {
   padding-top: 48px;
   padding-bottom: 48px;
-}
-
-.section-facts .section-intro {
-  max-width: 640px;
-  margin: 0 auto 32px;
-  text-align: center;
-  font-size: 15px;
-  color: var(--color-text-muted);
 }
 
 .facts-grid {
@@ -6393,9 +6333,11 @@ gallery__video-item iframe {
 /* Luxe card – общий стиль премиальных карточек */
 .card-luxe {
   border-radius: 24px;
-  box-shadow: 0 18px 45px var(--border-soft);
-  border: 1px solid var(--border-brand-soft);
-  /* без background и padding — их задают сами типы карточек */
+  background: linear-gradient(145deg, #ffffff, #f6f0ff);
+  box-shadow: 0 20px 60px rgba(8, 2, 26, 0.12);
+  border: 1px solid rgba(122, 47, 180, 0.1);
+  padding: 22px 20px;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 @media (max-width: 600px) {
