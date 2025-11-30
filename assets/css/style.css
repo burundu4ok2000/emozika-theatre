@@ -1972,6 +1972,23 @@ body.is-lightbox-open {
   text-align: left;
 }
 
+/* Факты в хедере блока "О театре и студии" */
+.section-studio .about-facts {
+  max-width: 840px;
+  margin: 16px 0 32px;
+}
+
+.section-studio .about-facts-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.section-studio .about-fact {
+  font-size: 13px;
+}
+
 .studio-layout {
   display: grid;
   gap: 24px;
