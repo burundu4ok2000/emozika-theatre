@@ -1010,32 +1010,86 @@
 
     <section id="reviews" class="section section-reviews reveal-on-scroll">
       <div class="container">
-        <h2 class="section-title">Что говорят родители</h2>
-        <div class="section-subtitle">
-          Настоящие впечатления детей и взрослых о студии и спектаклях.
+        <div class="section-header section-header--center">
+          <p class="eyebrow">Отзывы</p>
+          <h2 class="section-title">Видеоистории родителей</h2>
+          <p class="section-subtitle">
+            Живые впечатления мам, пап и детей после занятий и спектаклей «Эмоции».
+          </p>
         </div>
 
-        <div class="reviews-grid">
-          <article class="review-card card card-hover">
-            <p class="review-text">
-              «Здесь будет короткая цитата от родителя о том, как ребёнок полюбил сцену и стал увереннее в себе.»
-            </p>
-            <p class="review-author">— Мама ученицы, 10 лет</p>
-          </article>
+        <div class="reviews-strip-shell">
+          <button
+            class="reviews-strip__arrow reviews-strip__arrow--left"
+            type="button"
+            aria-label="Предыдущий отзыв"
+            data-reviews-arrow="left"
+          >
+            ‹
+          </button>
 
-          <article class="review-card card card-hover">
-            <p class="review-text">
-              «Ещё один отзыв, 2–3 предложения. Про атмосферу, педагогов и важность первого выхода на сцену.»
-            </p>
-            <p class="review-author">— Папа ученика, 12 лет</p>
-          </article>
+          <div
+            class="reviews-strip"
+            data-reviews-strip
+            aria-label="Видеоистории родителей"
+          >
+            <!-- Карточки видеоотзывов рендерятся через JavaScript -->
+          </div>
 
-          <article class="review-card card card-hover">
-            <p class="review-text">
-              «Третий отзыв-заглушка. Потом подставим реальные цитаты вместо рыбы.»
-            </p>
-            <p class="review-author">— Семья юной актрисы</p>
-          </article>
+          <button
+            class="reviews-strip__arrow reviews-strip__arrow--right"
+            type="button"
+            aria-label="Следующий отзыв"
+            data-reviews-arrow="right"
+          >
+            ›
+          </button>
+        </div>
+
+        <p class="reviews-hint">
+          Листайте ленту вправо, чтобы посмотреть другие истории.
+        </p>
+      </div>
+
+      <!-- Лайтбокс для просмотра выбранного видеоотзыва -->
+      <div
+        class="review-lightbox"
+        data-review-lightbox
+        aria-hidden="true"
+        hidden
+      >
+        <div
+          class="review-lightbox__backdrop"
+          data-review-lightbox-backdrop
+        ></div>
+
+        <div
+          class="review-lightbox__dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="review-lightbox-title"
+        >
+          <button
+            class="review-lightbox__close"
+            type="button"
+            aria-label="Закрыть отзыв"
+            data-review-lightbox-close
+          >
+            ✕
+          </button>
+
+          <div class="review-lightbox__video">
+            <!-- Видеоплеер подставляется через JavaScript -->
+          </div>
+
+          <div class="review-lightbox__body">
+            <h3
+              class="review-lightbox__title"
+              id="review-lightbox-title"
+            ></h3>
+            <p class="review-lightbox__quote"></p>
+            <p class="review-lightbox__meta"></p>
+          </div>
         </div>
       </div>
     </section>
