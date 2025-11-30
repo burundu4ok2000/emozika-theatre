@@ -991,6 +991,367 @@ img {
   }
 }
 
+/* ======================================
+   Галерея: карусель + кино-стиль
+   ====================================== */
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.gallery__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gallery__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gallery-tab {
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(6, 2, 18, 0.9);
+  color: #f9f4ff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.gallery-tab.is-active {
+  background: linear-gradient(120deg, #ff6b9c, #ffcf71);
+  border-color: transparent;
+  color: #1a0b2e;
+  transform: translateY(-1px);
+}
+
+.gallery__hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.gallery__scroller-wrapper {
+  position: relative;
+}
+
+.gallery__scroller {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 0.75rem 0.25rem 0.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* чуть более кинематографичная дорожка */
+.gallery__scroller::before,
+.gallery__scroller::after {
+  content: "";
+  position: sticky;
+  top: 0;
+  width: 40px;
+  flex: 0 0 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery__scroller::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 0, 20, 0.9),
+    transparent
+  );
+}
+
+.gallery__scroller::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(5, 0, 20, 0.9),
+    transparent
+  );
+}
+
+.gallery__scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery__scroller::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+}
+
+/* Карточка кадра */
+
+.gallery-card {
+  scroll-snap-align: start;
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(180px, 42vw, 260px);
+  border-radius: 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 55%),
+    #0d0418;
+  box-shadow: 0 24px 60px rgba(5, 0, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transform-origin: center bottom;
+  transition:
+    transform 0.22s ease-out,
+    box-shadow 0.22s ease-out,
+    filter 0.22s ease-out;
+}
+
+/* имидж как кадр плёнки */
+
+.gallery-card__image-wrapper {
+  position: relative;
+  padding-top: 68%;
+  overflow: hidden;
+}
+
+.gallery-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.05);
+  transition: transform 0.28s ease-out;
+}
+
+/* рамка-плёнка */
+
+.gallery-card__frame {
+  position: absolute;
+  inset: 6%;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* маленькие «дырочки» плёнки сверху */
+
+.gallery-card__frame::before,
+.gallery-card__frame::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 4px;
+  border-radius: 999px;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.85) 34%,
+    transparent 36%
+  );
+  background-size: 14px 4px;
+  background-repeat: repeat-x;
+  opacity: 0.55;
+}
+
+.gallery-card__frame::before {
+  top: -3px;
+}
+
+.gallery-card__frame::after {
+  bottom: -3px;
+}
+
+.gallery-card__meta {
+  padding: 0.6rem 0.85rem 0.8rem;
+  font-size: 0.86rem;
+}
+
+.gallery-card__title {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.gallery-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(0, 0, 0, 0.65);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.gallery-card__tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #ffcf71, #ff6b9c);
+}
+
+/* hover = «кадр выезжает на сцену» */
+
+@media (hover: hover) {
+  .gallery-card:hover,
+  .gallery-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(5, 0, 35, 0.9);
+  }
+
+  .gallery-card:hover .gallery-card__image,
+  .gallery-card:focus-within .gallery-card__image {
+    transform: scale(1.05);
+  }
+}
+
+.gallery__empty {
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+  .gallery__tabs {
+    row-gap: 0.4rem;
+  }
+
+  .gallery__hint {
+    font-size: 0.8rem;
+  }
+
+  .gallery-card {
+    width: 70vw;
+  }
+}
+
+/* ======================================
+   Лайтбокс
+   ====================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(3, 0, 10, 0.88);
+}
+
+.lightbox__content {
+  position: relative;
+  z-index: 1;
+  max-width: min(960px, 94vw);
+  max-height: 90vh;
+  padding: 1rem 3.5rem 1.2rem;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.08), transparent 55%),
+    rgba(8, 0, 25, 0.96);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lightbox__figure {
+  margin: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 64vh;
+  border-radius: 1rem;
+  object-fit: contain;
+}
+
+.lightbox__caption {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.65rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 1.3rem;
+}
+
+.lightbox__nav--prev {
+  left: 0.85rem;
+}
+
+.lightbox__nav--next {
+  right: 0.85rem;
+}
+
+body.is-lightbox-open {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .lightbox__content {
+    padding: 0.75rem 0.75rem 1rem;
+  }
+
+  .lightbox__nav {
+    display: none;
+  }
+}
+
+/* уменьшение анимаций при prefers-reduced-motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-card,
+  .gallery-card__image {
+    transition: none;
+  }
+}
+
 /* Афиша как маленькая сцена: подиум и свет */
 
 .section-afisha .afisha-card {
@@ -2432,42 +2793,6 @@ img {
   }
 }
 
-.section--gallery {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.gallery__item {
-  border-radius: 1rem;
-  overflow: hidden;
-  background-color: var(--surface-muted, #111);
-}
-
-.gallery__image {
-  display: block;
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.gallery__caption {
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
 .gallery__video {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2988,40 +3313,6 @@ h1, h2, h3 {
   .top-banner-inner {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-@media (max-width: 1024px) {
-  .gallery__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .gallery__video {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .section--gallery {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
-  .gallery__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .gallery__image {
-    height: 180px;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery__image {
-    height: 200px;
   }
 }
 

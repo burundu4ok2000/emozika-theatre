@@ -1271,50 +1271,51 @@
         </p>
 
         <div class="gallery">
-          <div class="gallery__grid">
-            <figure class="gallery__item">
-              <img
-                src="assets/gallery/rehearsal-1.jpg"
-                alt="Репетиция в студии «Эмоция»"
-                class="gallery__image"
+          <div class="gallery__header">
+            <div class="gallery__tabs" aria-label="Фильтр фотографий">
+              <button
+                class="gallery-tab is-active"
+                type="button"
+                data-gallery-filter="all"
               >
-              <figcaption class="gallery__caption">
-                Репетиция в студии «Эмоция»
-              </figcaption>
-            </figure>
+                Все
+              </button>
+              <button
+                class="gallery-tab"
+                type="button"
+                data-gallery-filter="stage"
+              >
+                Сцена
+              </button>
+              <button
+                class="gallery-tab"
+                type="button"
+                data-gallery-filter="rehearsal"
+              >
+                Репетиции
+              </button>
+              <button
+                class="gallery-tab"
+                type="button"
+                data-gallery-filter="backstage"
+              >
+                Закулисье
+              </button>
+            </div>
 
-            <figure class="gallery__item">
-              <img
-                src="assets/gallery/show-1.jpg"
-                alt="Юные актёры на сцене"
-                class="gallery__image"
-              >
-              <figcaption class="gallery__caption">
-                Юные актёры на сцене
-              </figcaption>
-            </figure>
+            <p class="gallery__hint">
+              Листайте ленту в сторону — как киноплёнку, там больше кадров.
+            </p>
+          </div>
 
-            <figure class="gallery__item">
-              <img
-                src="assets/gallery/backstage-1.jpg"
-                alt="Закулисье перед спектаклем"
-                class="gallery__image"
-              >
-              <figcaption class="gallery__caption">
-                Закулисье перед спектаклем
-              </figcaption>
-            </figure>
-
-            <figure class="gallery__item">
-              <img
-                src="assets/gallery/rehearsal-2.jpg"
-                alt="Работа над сценой"
-                class="gallery__image"
-              >
-              <figcaption class="gallery__caption">
-                Работа над сценой
-              </figcaption>
-            </figure>
+          <div class="gallery__scroller-wrapper">
+            <div
+              class="gallery__scroller"
+              data-gallery-scroller
+              aria-label="Фотогалерея театра"
+            >
+              <!-- Карточки галереи рендерятся через JavaScript -->
+            </div>
           </div>
 
           <div class="gallery__video">
@@ -1641,6 +1642,53 @@
       </div>
     </div>
   </footer>
+
+  <script src="assets/js/main.js"></script>
+  <div class="lightbox" id="gallery-lightbox" hidden>
+    <button
+      class="lightbox__overlay"
+      type="button"
+      data-lightbox-close
+    ></button>
+
+    <div
+      class="lightbox__content"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Просмотр фотографии"
+    >
+      <button
+        class="lightbox__close"
+        type="button"
+        data-lightbox-close
+        aria-label="Закрыть галерею"
+      >
+        ×
+      </button>
+
+      <figure class="lightbox__figure">
+        <img src="" alt="" class="lightbox__image">
+        <figcaption class="lightbox__caption"></figcaption>
+      </figure>
+
+      <button
+        class="lightbox__nav lightbox__nav--prev"
+        type="button"
+        data-lightbox-prev
+        aria-label="Предыдущая фотография"
+      >
+        ‹
+      </button>
+      <button
+        class="lightbox__nav lightbox__nav--next"
+        type="button"
+        data-lightbox-next
+        aria-label="Следующая фотография"
+      >
+        ›
+      </button>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
