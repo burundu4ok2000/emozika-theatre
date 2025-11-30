@@ -681,79 +681,39 @@
           </p>
         </div>
 
-        <div class="films-layout">
-          <div class="films-column films-column--school">
-            <h3 class="films-column-title">Киношкола «Эмоция»</h3>
-
-            <p class="films-text">
-              Учебные проекты киношколы превращаются в законченные короткометражные фильмы — от идеи до премьеры.
-              Дети пробуют себя в ролях актёров, режиссёров, сценаристов и операторов.
-            </p>
-
-            <ul class="films-meta">
-              <li>полный цикл: сценарий, съёмка, монтаж;</li>
-              <li>съёмки на профессиональную технику с педагогами-практиками;</li>
-              <li>участие фильмов в российских и международных фестивалях;</li>
-              <li>возможность попасть в актёрское агентство и на реальные кастинги.</li>
-            </ul>
-
-            <div class="films-actions">
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-scroll-to="contacts"
-              >
-                Записаться в киношколу
-              </button>
-            </div>
+        <div class="films-shell">
+          <!-- Горизонтальная карусель с карточками фильмов -->
+          <div class="films-carousel" data-films-carousel>
+            <!-- Карточки будут подставлены через JS -->
           </div>
 
-          <div class="films-column films-column--awards">
-            <h3 class="films-column-title">Фильмы и фестивали</h3>
+          <!-- Детальная панель выбранного фильма -->
+          <div class="films-detail" data-film-detail>
+            <div class="films-detail-video">
+              <div class="films-video-frame" data-film-embed>
+                <!-- Сюда JS вставит iframe ВК или заглушку -->
+              </div>
+            </div>
 
-            <ul class="films-list">
-              <li class="films-item">
-                <h4 class="films-item-title">«Скорая детская помощь»</h4>
-                <p class="films-item-meta">
-                  Короткометражный фильм студии.
-                </p>
-                <p class="films-item-award">
-                  Лауреат I степени Международного кинофестиваля Cinema Kids.
-                </p>
-              </li>
+            <div class="films-detail-body">
+              <h3 class="films-detail-title" data-film-title></h3>
+              <p class="films-detail-meta" data-film-meta></p>
 
-              <li class="films-item">
-                <h4 class="films-item-title">«Твори Добро»</h4>
-                <p class="films-item-meta">
-                  Короткометражный фильм студии.
-                </p>
-                <p class="films-item-award">
-                  Гран-при VIII Международного фестиваля искусств «Династия»
-                  имени Павла Кадочникова.
-                </p>
-              </li>
+              <div class="films-detail-authors" data-film-authors></div>
 
-              <li class="films-item">
-                <h4 class="films-item-title">«Особняк потерянных шагов»</h4>
-                <p class="films-item-meta">
-                  Короткометражный фильм студии.
-                </p>
-                <p class="films-item-award">
-                  Гран-при VIII Международного фестиваля искусств «Династия»
-                  имени Павла Кадочникова.
-                </p>
-              </li>
+              <ul class="films-detail-awards" data-film-awards>
+                <!-- Пункты наград -->
+              </ul>
 
-              <li class="films-item">
-                <h4 class="films-item-title">«Путь к памяти»</h4>
-                <p class="films-item-meta">
-                  Патриотический фильм к 80-летию Победы.
-                </p>
-                <p class="films-item-award">
-                  Победитель специальной номинации Международного фестиваля Cinema Kids 2025.
-                </p>
-              </li>
-            </ul>
+              <div class="films-detail-synopsis" data-film-synopsis></div>
+
+              <a class="btn btn-ghost films-detail-vk"
+                 data-film-vk-link
+                 target="_blank"
+                 rel="noopener">
+                Смотреть на ВК
+              </a>
+            </div>
           </div>
         </div>
 
