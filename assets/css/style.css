@@ -978,11 +978,6 @@ img {
   padding: 20px 20px 18px;
 }
 
-.abonement-card--highlight {
-  border: 1px solid #e0dbff;
-  box-shadow: 0 10px 30px rgba(29, 19, 92, 0.12);
-}
-
 .abonement-card--hero {
   border-color: #6b4cff;
   box-shadow: 0 16px 40px rgba(29, 19, 92, 0.24);
@@ -1102,6 +1097,14 @@ img {
 
   .abonements-note {
     max-width: 420px;
+  }
+}
+
+/* уменьшение анимаций при prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .abonement-card {
+    transition: none;
+    transform: none;
   }
 }
 

@@ -1742,10 +1742,6 @@ function initAbonementsBlock(data) {
     var card = document.createElement("article");
     card.className = "abonement-card card card-hover";
 
-    if (item.highlight) {
-      card.classList.add("abonement-card--highlight");
-    }
-
     if (isHero) {
       card.classList.add("abonement-card--hero");
     }
