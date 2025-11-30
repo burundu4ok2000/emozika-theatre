@@ -1,3 +1,282 @@
+// Данные спектаклей, загруженные из JSON
+let playsData = [];
+
+// Получить спектакль по id
+function getPlayById(id) {
+  return playsData.find(function (play) {
+    return play.id === id;
+  });
+}
+
+function renderAfishaCards() {
+  const afishaContainer = document.querySelector("[data-afisha-list]");
+  if (!afishaContainer || !Array.isArray(playsData)) {
+    return;
+  }
+
+  const cardsHtml = playsData
+    .map(function (play) {
+      const badges = [];
+
+      if (play.isPremiere) {
+        badges.push(
+          '<span class="afisha-badge afisha-badge--premiere">Премьера сезона</span>'
+        );
+      }
+
+      if (play.isNewYearProgram) {
+        badges.push(
+          '<span class="afisha-badge afisha-badge--ny">Новогодняя программа</span>'
+        );
+      }
+
+      const metaParts = [];
+      if (play.age) metaParts.push(play.age);
+      if (play.genre) metaParts.push(play.genre);
+      if (play.duration) metaParts.push(play.duration);
+
+      const metaLine = metaParts.join(" • ");
+
+      return (
+        '<article class="afisha-card" data-play-id="' +
+        play.id +
+        '">' +
+        '<div class="afisha-card__header">' +
+        badges.join("") +
+        "</div>" +
+        '<div class="afisha-card__body">' +
+        '<h3 class="afisha-card__title">' +
+        play.title +
+        "</h3>" +
+        (metaLine ? '<p class="afisha-card__meta">' + metaLine + "</p>" : "") +
+        (play.afishaShort
+          ? '<p class="afisha-card__text">' + play.afishaShort + "</p>"
+          : "") +
+        (play.afishaNote
+          ? '<p class="afisha-card__note">' + play.afishaNote + "</p>"
+          : "") +
+        "</div>" +
+        '<div class="afisha-card__footer">' +
+        '<button class="btn btn-primary afisha-card__btn" type="button" data-play-open="' +
+        play.id +
+        '">' +
+        "Подробнее о спектакле" +
+        "</button>" +
+        "</div>" +
+        "</article>"
+      );
+    })
+    .join("");
+
+  afishaContainer.innerHTML = cardsHtml;
+}
+
+function initPlayModal() {
+  const modal = document.getElementById("play-modal");
+  if (!modal) {
+    return;
+  }
+
+  const body = document.body;
+
+  const titleEl = modal.querySelector("[data-play-modal-title]");
+  const taglineEl = modal.querySelector("[data-play-modal-tagline]");
+  const metaEl = modal.querySelector("[data-play-modal-meta]");
+  const descEl = modal.querySelector("[data-play-modal-description]");
+  const whyEl = modal.querySelector("[data-play-modal-why]");
+  const creditsEl = modal.querySelector("[data-play-modal-credits]");
+  const mainMediaEl = modal.querySelector("[data-play-modal-main-media]");
+  const thumbsEl = modal.querySelector("[data-play-modal-thumbs]");
+
+  function renderPlayInModal(playId) {
+    const play = getPlayById(playId);
+    if (!play) {
+      return;
+    }
+
+    if (titleEl) {
+      titleEl.textContent = play.title || "";
+    }
+
+    if (taglineEl) {
+      taglineEl.textContent = play.tagline || "";
+    }
+
+    if (metaEl) {
+      const metaParts = [];
+      if (play.age) metaParts.push(play.age);
+      if (play.genre) metaParts.push(play.genre);
+      if (play.duration) metaParts.push(play.duration);
+      if (play.hall) metaParts.push(play.hall);
+
+      metaEl.innerHTML = metaParts
+        .map(function (item) {
+          return '<div class="play-modal__meta-item">' + item + "</div>";
+        })
+        .join("");
+    }
+
+    if (descEl) {
+      const description = Array.isArray(play.description) ? play.description : [];
+      descEl.innerHTML = description
+        .map(function (paragraph) {
+          return "<p>" + paragraph + "</p>";
+        })
+        .join("");
+    }
+
+    if (whyEl) {
+      const whyList = Array.isArray(play.whyToWatch) ? play.whyToWatch : [];
+      whyEl.innerHTML = whyList
+        .map(function (item) {
+          return "<li>" + item + "</li>";
+        })
+        .join("");
+    }
+
+    if (creditsEl) {
+      const creditsHtml = [];
+      if (play.credits) {
+        if (play.credits.author) {
+          creditsHtml.push(
+            "<p><strong>Автор пьесы:</strong> " + play.credits.author + "</p>"
+          );
+        }
+        if (play.credits.director) {
+          creditsHtml.push(
+            "<p><strong>Режиссёр:</strong> " + play.credits.director + "</p>"
+          );
+        }
+        if (Array.isArray(play.credits.cast) && play.credits.cast.length > 0) {
+          const castTitle = play.credits.castTitle || "В ролях";
+          creditsHtml.push(
+            "<p><strong>" +
+              castTitle +
+              ":</strong> " +
+              play.credits.cast.join(", ") +
+              "</p>"
+          );
+        }
+      }
+      creditsEl.innerHTML = creditsHtml.join("");
+    }
+
+    const media = play.media || {};
+    const photos = Array.isArray(media.photos) ? media.photos : [];
+    const video = media.video || "";
+
+    if (mainMediaEl) {
+      if (video) {
+        mainMediaEl.innerHTML =
+          '<div class="play-modal__video-placeholder">Здесь будет видео спектакля</div>';
+      } else if (photos.length > 0) {
+        mainMediaEl.innerHTML =
+          '<img src="' +
+          photos[0] +
+          '" alt="' +
+          play.title +
+          '">';
+      } else {
+        mainMediaEl.innerHTML = "";
+      }
+    }
+
+    if (thumbsEl) {
+      if (photos.length > 0) {
+        thumbsEl.innerHTML = photos
+          .map(function (src, index) {
+            return (
+              '<button type="button" class="play-modal__thumb" data-play-thumb="' +
+              index +
+              '">' +
+              '<img src="' +
+              src +
+              '" alt="' +
+              play.title +
+              ", кадр " +
+              (index + 1) +
+              '">' +
+              "</button>"
+            );
+          })
+          .join("");
+      } else {
+        thumbsEl.innerHTML = "";
+      }
+
+      thumbsEl.onclick = function (event) {
+        const btn = event.target.closest("[data-play-thumb]");
+        if (!btn || !mainMediaEl) return;
+        const index = Number(btn.getAttribute("data-play-thumb"));
+        if (!Number.isNaN(index) && photos[index]) {
+          mainMediaEl.innerHTML =
+            '<img src="' +
+            photos[index] +
+            '" alt="' +
+            play.title +
+            ", кадр " +
+            (index + 1) +
+            '">';
+        }
+      };
+    }
+  }
+
+  function openModal(playId) {
+    renderPlayInModal(playId);
+    modal.classList.add("play-modal--open");
+    body.classList.add("no-scroll");
+  }
+
+  function closeModal() {
+    modal.classList.remove("play-modal--open");
+    body.classList.remove("no-scroll");
+  }
+
+  function bindOpenButtons() {
+    const openButtons = document.querySelectorAll("[data-play-open]");
+    openButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const playId = btn.getAttribute("data-play-open");
+        if (playId) {
+          openModal(playId);
+        }
+      });
+    });
+  }
+
+  const closeElements = modal.querySelectorAll("[data-play-modal-close]");
+  closeElements.forEach(function (el) {
+    el.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  bindOpenButtons();
+}
+
+function loadPlaysData() {
+  return fetch("assets/data/plays.json")
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Ошибка загрузки plays.json");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      playsData = Array.isArray(data.plays) ? data.plays : [];
+      renderAfishaCards();
+      initPlayModal();
+    })
+    .catch(function (error) {
+      console.error("Не удалось загрузить данные спектаклей:", error);
+    });
+}
+
 // ======================================
 // 1. Базовая инициализация
 // ======================================
@@ -6,6 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  loadPlaysData();
 
   // ======================================
   // 2. Анимация появления секций при скролле
