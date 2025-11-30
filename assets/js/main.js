@@ -1554,41 +1554,48 @@ function initVideoReviewsSection() {
 }
 
 // ======================================
-// Филиалы и площадки — сортировка и фильтр
+// Филиалы и площадки — сортировка, фильтр, подсветка метро
 // ======================================
 
 function sortBranches(branches) {
   if (!Array.isArray(branches)) return [];
 
-  return branches.slice().sort(function (a, b) {
-    if (a.isAdults && !b.isAdults) return -1;
-    if (!a.isAdults && b.isAdults) return 1;
+  return branches
+    .slice()
+    .sort(function (a, b) {
+      // 1. Сначала площадки с группами 18+
+      if (a.isAdults && !b.isAdults) return -1;
+      if (!a.isAdults && b.isAdults) return 1;
 
-    var metroA = (a.metro || "").toLowerCase();
-    var metroB = (b.metro || "").toLowerCase();
-    if (metroA < metroB) return -1;
-    if (metroA > metroB) return 1;
+      // 2. Потом по станции метро (по алфавиту)
+      var metroA = (a.metro || "").toLowerCase();
+      var metroB = (b.metro || "").toLowerCase();
+      if (metroA < metroB) return -1;
+      if (metroA > metroB) return 1;
 
-    var cityA = (a.city || "").toLowerCase();
-    var cityB = (b.city || "").toLowerCase();
-    if (cityA < cityB) return -1;
-    if (cityA > cityB) return 1;
+      // 3. Город (на всякий случай)
+      var cityA = (a.city || "").toLowerCase();
+      var cityB = (b.city || "").toLowerCase();
+      if (cityA < cityB) return -1;
+      if (cityA > cityB) return 1;
 
-    var placeA = (a.place || "").toLowerCase();
-    var placeB = (b.place || "").toLowerCase();
-    if (placeA < placeB) return -1;
-    if (placeA > placeB) return 1;
+      // 4. Название площадки
+      var placeA = (a.place || "").toLowerCase();
+      var placeB = (b.place || "").toLowerCase();
+      if (placeA < placeB) return -1;
+      if (placeA > placeB) return 1;
 
-    return 0;
-  });
+      return 0;
+    });
 }
 
-function renderBranchesList(rootEl, branches, filter) {
+function renderBranchesList(rootEl, branches, filter, highlightMetro) {
   if (!rootEl) return;
 
   rootEl.innerHTML = "";
 
   var filtered = Array.isArray(branches) ? branches.slice() : [];
+  var highlight = (highlightMetro || "").toLowerCase();
 
   if (filter === "adults") {
     filtered = filtered.filter(function (branch) {
@@ -1613,6 +1620,15 @@ function renderBranchesList(rootEl, branches, filter) {
       "branch-card card-hover" +
       (branch.isAdults ? " branch-card--adults" : "");
 
+    // Подсветка «моей» станции метро
+    if (
+      highlight &&
+      (branch.metro || "").toLowerCase() === highlight
+    ) {
+      card.classList.add("branch-card--highlight");
+    }
+
+    // Верхняя строка: метро + название площадки
     var topRow = document.createElement("div");
     topRow.className = "branch-card-top";
 
@@ -1627,10 +1643,12 @@ function renderBranchesList(rootEl, branches, filter) {
     topRow.appendChild(metroBadge);
     topRow.appendChild(placeTitle);
 
+    // Адрес
     var address = document.createElement("p");
     address.className = "branch-address";
     address.textContent = branch.address || "";
 
+    // Город / доп. мета
     var metaRow = document.createElement("div");
     metaRow.className = "branch-meta";
 
@@ -1641,16 +1659,17 @@ function renderBranchesList(rootEl, branches, filter) {
       metaRow.appendChild(citySpan);
     }
 
-    var comment = null;
+    // Комментарий (если есть)
     if (branch.comment) {
-      comment = document.createElement("p");
+      var comment = document.createElement("p");
       comment.className = "branch-comment";
       comment.textContent = branch.comment;
+      card.appendChild(comment);
     }
 
-    var phonesList = null;
+    // Телефоны
     if (branch.phones && branch.phones.length) {
-      phonesList = document.createElement("div");
+      var phonesList = document.createElement("div");
       phonesList.className = "branch-phones";
 
       branch.phones.forEach(function (phone) {
@@ -1660,19 +1679,11 @@ function renderBranchesList(rootEl, branches, filter) {
         link.textContent = phone;
         phonesList.appendChild(link);
       });
-    }
 
-    card.appendChild(topRow);
-    card.appendChild(address);
-    if (metaRow.childNodes.length) {
-      card.appendChild(metaRow);
-    }
-    if (comment) {
-      card.appendChild(comment);
-    }
-    if (phonesList) {
       card.appendChild(phonesList);
     }
+
+    // Бейдж 18+
     if (branch.isAdults) {
       var badge = document.createElement("span");
       badge.className = "branch-adults-badge";
@@ -1680,8 +1691,48 @@ function renderBranchesList(rootEl, branches, filter) {
       card.appendChild(badge);
     }
 
+    card.appendChild(topRow);
+    card.appendChild(address);
+
+    if (metaRow.childNodes.length) {
+      card.appendChild(metaRow);
+    }
+
     rootEl.appendChild(card);
   });
+}
+
+function getUniqueMetros(branches) {
+  var seen = {};
+  var metros = [];
+
+  if (!Array.isArray(branches)) return metros;
+
+  branches.forEach(function (branch) {
+    var metro = branch.metro || "";
+    if (!metro) return;
+    if (seen[metro]) return;
+    seen[metro] = true;
+    metros.push(metro);
+  });
+
+  metros.sort(function (a, b) {
+    return a.localeCompare(b, "ru");
+  });
+
+  return metros;
+}
+
+function getMetroFromQuery() {
+  if (!window.location || !window.location.search) return "";
+
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var value = params.get("metro");
+    return value ? value.trim() : "";
+  } catch (e) {
+    return "";
+  }
 }
 
 function initBranchesSection(branches) {
@@ -1690,31 +1741,89 @@ function initBranchesSection(branches) {
 
   var listRoot = section.querySelector("[data-branches-list]");
   var filterButtons = section.querySelectorAll("[data-branch-filter]");
+  var myMetroSelect = section.querySelector("[data-branch-my-metro]");
 
-  if (!listRoot || !filterButtons.length) return;
+  if (!listRoot) return;
 
   var sorted = sortBranches(branches);
   var activeFilter = "all";
+  var highlightMetro = "";
+
+  // Пробуем взять метро из параметра URL (?metro=...)
+  var metroFromUrl = getMetroFromQuery();
+  if (metroFromUrl) {
+    highlightMetro = metroFromUrl;
+  }
+
+  function updateView() {
+    renderBranchesList(listRoot, sorted, activeFilter, highlightMetro);
+  }
 
   function setActiveFilter(value) {
     activeFilter = value;
 
-    filterButtons.forEach(function (btn) {
-      var btnFilter = btn.getAttribute("data-branch-filter") || "all";
-      btn.classList.toggle("is-active", btnFilter === activeFilter);
-    });
+    if (filterButtons && filterButtons.length) {
+      filterButtons.forEach(function (btn) {
+        var btnFilter = btn.getAttribute("data-branch-filter") || "all";
+        btn.classList.toggle("is-active", btnFilter === activeFilter);
+      });
+    }
 
-    renderBranchesList(listRoot, sorted, activeFilter);
+    updateView();
   }
 
-  filterButtons.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var value = btn.getAttribute("data-branch-filter") || "all";
-      setActiveFilter(value);
-    });
-  });
+  function setHighlightMetro(value) {
+    highlightMetro = value || "";
 
-  setActiveFilter(activeFilter);
+    if (myMetroSelect) {
+      var currentValue = myMetroSelect.value || "";
+      if (currentValue !== highlightMetro) {
+        myMetroSelect.value = highlightMetro;
+      }
+    }
+
+    updateView();
+  }
+
+  // Наполняем селект «Моя станция метро» вариантами
+  if (myMetroSelect) {
+    // очищаем, оставляем только первый option "Не выбрано"
+    myMetroSelect.innerHTML = "";
+    var placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Не выбрано";
+    myMetroSelect.appendChild(placeholder);
+
+    var metros = getUniqueMetros(sorted);
+    metros.forEach(function (metro) {
+      var option = document.createElement("option");
+      option.value = metro;
+      option.textContent = metro;
+      myMetroSelect.appendChild(option);
+    });
+
+    // если в URL было метро — заранее проставим
+    if (highlightMetro) {
+      myMetroSelect.value = highlightMetro;
+    }
+
+    myMetroSelect.addEventListener("change", function () {
+      var value = myMetroSelect.value || "";
+      setHighlightMetro(value);
+    });
+  }
+
+  if (filterButtons && filterButtons.length) {
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var value = btn.getAttribute("data-branch-filter") || "all";
+        setActiveFilter(value);
+      });
+    });
+  }
+
+  // Стартовое отображение
+  updateView();
 }
 
 // ======================================

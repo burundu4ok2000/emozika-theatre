@@ -5237,6 +5237,33 @@ gallery__video-item iframe {
   margin-bottom: 8px;
 }
 
+.branches-preferences {
+  margin-bottom: 12px;
+}
+
+.branches-my-metro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.branches-my-metro-label {
+  white-space: nowrap;
+}
+
+.branches-my-metro-select {
+  min-width: 180px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 47, 180, 0.25);
+  background: #ffffff;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
 .branches-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -5266,6 +5293,13 @@ gallery__video-item iframe {
 
 .branch-card--adults {
   border: 1px solid rgba(122, 47, 180, 0.5);
+}
+
+.branch-card--highlight {
+  box-shadow:
+    0 0 0 2px rgba(122, 47, 180, 0.6),
+    0 14px 34px rgba(122, 47, 180, 0.35);
+  transform: translateY(-2px);
 }
 
 .branch-card-top {
