@@ -927,41 +927,59 @@ function buildDirectionsTagsHtml(directions) {
 
 function renderTopAwardsStrip(container, topAwards) {
   if (!container) return;
-  container.innerHTML = "";
 
-  topAwards.forEach(function (award) {
-    const badge = document.createElement("article");
-    badge.className = "award-badge";
-    // лёгкое выделение особо статусных наград
-    if (award.label.indexOf("Гран-при") !== -1) {
-      badge.classList.add("award-badge--grandprix");
-    }
+  // Фабрика HTML для одного бейджа
+  function getBadgeHtml(award) {
+    var isGrandPrix = award.label.indexOf("Гран-при") !== -1;
 
-    const titleEl = document.createElement("h3");
-    titleEl.className = "award-badge-title";
-    titleEl.textContent = award.label;
+    return (
+      '<article class="award-badge' +
+      (isGrandPrix ? " award-badge--grandprix" : "") +
+      '" data-festival-id="' +
+      award.festivalId +
+      '">' +
+      '<h3 class="award-badge-title">' +
+      award.label +
+      "</h3>" +
+      (award.sublabel
+        ? '<p class="award-badge-text">' + award.sublabel + "</p>"
+        : "") +
+      "</article>"
+    );
+  }
 
-    const textEl = document.createElement("p");
-    textEl.className = "award-badge-text";
-    textEl.textContent = award.sublabel || "";
+  // Базовый набор бейджей
+  var badgesHtml = topAwards.map(getBadgeHtml).join("");
 
-    badge.appendChild(titleEl);
-    if (award.sublabel) {
-      badge.appendChild(textEl);
-    }
+  // Рендерим первую «дорожку»
+  container.innerHTML = badgesHtml;
 
-    // клик по бейджу — мягкий скролл к карточке фестиваля
-    badge.addEventListener("click", function () {
-      const target = document.querySelector(
-        '[data-festival-id="' + award.festivalId + '"]'
+  // Если у родителя стоит класс автоленты — дублируем содержимое,
+  // чтобы CSS-анимация по -50% крутила бесконечную ленту без дыр
+  var autoStripParent = container.closest(".awards-strip--auto");
+  if (autoStripParent) {
+    container.innerHTML += badgesHtml;
+  }
+
+  // Один обработчик на весь контейнер (делегирование кликов)
+  if (!container.__awardsClickBound) {
+    container.addEventListener("click", function (event) {
+      var badge = event.target.closest(".award-badge");
+      if (!badge) return;
+
+      var festivalId = badge.getAttribute("data-festival-id");
+      if (!festivalId) return;
+
+      var target = document.querySelector(
+        '[data-festival-id="' + festivalId + '"]'
       );
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
 
-    container.appendChild(badge);
-  });
+    container.__awardsClickBound = true;
+  }
 }
 
 function renderFestivalCards(container, festivals) {

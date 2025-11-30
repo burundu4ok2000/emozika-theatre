@@ -1113,39 +1113,6 @@ img {
   font-weight: 600;
 }
 
-/* Автоскролл ленты наград для десктопа */
-
-@media (min-width: 1024px) {
-  .awards-strip--auto {
-    overflow: hidden;
-  }
-
-  .awards-strip--auto .awards-strip-inner {
-    animation: awards-strip-scroll 40s linear infinite;
-  }
-
-  .awards-strip--auto:hover .awards-strip-inner {
-    animation-play-state: paused;
-  }
-
-  @keyframes awards-strip-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-}
-
-/* Уважение к системной настройке уменьшения анимации */
-
-@media (prefers-reduced-motion: reduce) {
-  .awards-strip--auto .awards-strip-inner {
-    animation: none;
-    transform: none;
-  }
-}
 
 /* Разрешаем афише “выходить” за границы белой карты секции */
 .section-afisha .section-inner {
@@ -3474,6 +3441,38 @@ body.is-lightbox-open {
 
 .festival-tag--speech {
   border-color: rgba(197, 169, 255, 0.85);
+}
+
+/* Автоскролл ленты наград для десктопа */
+@media (min-width: 1024px) {
+  .awards-strip--auto {
+    overflow: hidden;
+  }
+
+  .awards-strip--auto .awards-strip-inner {
+    animation: awards-strip-scroll 40s linear infinite;
+  }
+
+  .awards-strip--auto:hover .awards-strip-inner {
+    animation-play-state: paused;
+  }
+
+  @keyframes awards-strip-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Уважение к системной настройке уменьшения анимации */
+@media (prefers-reduced-motion: reduce) {
+  .awards-strip--auto .awards-strip-inner {
+    animation: none;
+    transform: none;
+  }
 }
 
 .gallery__video {
