@@ -232,6 +232,86 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ======================================
+  // 5.1. Абонементы студии
+  // ======================================
+
+  const abonementsGrid = document.querySelector("[data-abonements-grid]");
+
+  if (abonementsGrid) {
+    fetch("assets/data/abonements.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Не удалось загрузить данные абонементов: HTTP " + response.status
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!data || !Array.isArray(data.items) || !data.items.length) {
+          return;
+        }
+        renderAbonements(abonementsGrid, data.items);
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке абонементов:", error);
+      });
+  }
+
+  function renderAbonements(container, items) {
+    container.innerHTML = "";
+
+    items.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "abonement-card";
+
+      if (item.highlight) {
+        card.classList.add("abonement-card--highlight");
+      }
+
+      const detailsList =
+        Array.isArray(item.details) && item.details.length
+          ? `<ul class="abonement-list">
+              ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
+            </ul>`
+          : "";
+
+      const note =
+        item.note && item.note.trim().length
+          ? `<p class="abonement-note">${item.note}</p>`
+          : "";
+
+      const badge =
+        item.badge && item.badge.trim().length
+          ? `<span class="abonement-badge">${item.badge}</span>`
+          : "";
+
+      const duration =
+        item.duration && item.duration.trim().length
+          ? `<p class="abonement-duration">${item.duration}</p>`
+          : "";
+
+      const description =
+        item.description && item.description.trim().length
+          ? `<p class="abonement-description">${item.description}</p>`
+          : "";
+
+      card.innerHTML = `
+        <div class="abonement-card-header">
+          ${badge}
+          <h3 class="abonement-title">${item.name}</h3>
+          ${duration}
+        </div>
+        ${description}
+        ${detailsList}
+        ${note}
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  // ======================================
   // 5. Афиша спектаклей (киноряд + модальное окно)
   // ======================================
 
