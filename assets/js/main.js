@@ -232,86 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ======================================
-  // 5.1. Абонементы студии
-  // ======================================
-
-  const abonementsGrid = document.querySelector("[data-abonements-grid]");
-
-  if (abonementsGrid) {
-    fetch("assets/data/abonements.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            "Не удалось загрузить данные абонементов: HTTP " + response.status
-          );
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (!data || !Array.isArray(data.items) || !data.items.length) {
-          return;
-        }
-        renderAbonements(abonementsGrid, data.items);
-      })
-      .catch((error) => {
-        console.error("Ошибка при загрузке абонементов:", error);
-      });
-  }
-
-  function renderAbonements(container, items) {
-    container.innerHTML = "";
-
-    items.forEach((item) => {
-      const card = document.createElement("article");
-      card.className = "abonement-card";
-
-      if (item.highlight) {
-        card.classList.add("abonement-card--highlight");
-      }
-
-      const detailsList =
-        Array.isArray(item.details) && item.details.length
-          ? `<ul class="abonement-list">
-              ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
-            </ul>`
-          : "";
-
-      const note =
-        item.note && item.note.trim().length
-          ? `<p class="abonement-note">${item.note}</p>`
-          : "";
-
-      const badge =
-        item.badge && item.badge.trim().length
-          ? `<span class="abonement-badge">${item.badge}</span>`
-          : "";
-
-      const duration =
-        item.duration && item.duration.trim().length
-          ? `<p class="abonement-duration">${item.duration}</p>`
-          : "";
-
-      const description =
-        item.description && item.description.trim().length
-          ? `<p class="abonement-description">${item.description}</p>`
-          : "";
-
-      card.innerHTML = `
-        <div class="abonement-card-header">
-          ${badge}
-          <h3 class="abonement-title">${item.name}</h3>
-          ${duration}
-        </div>
-        ${description}
-        ${detailsList}
-        ${note}
-      `;
-
-      container.appendChild(card);
-    });
-  }
-
-  // ======================================
   // 5. Афиша спектаклей (киноряд + модальное окно)
   // ======================================
 
@@ -1798,6 +1718,73 @@ function initBranchesSection(branches) {
 }
 
 // ======================================
+// Абонементы студии — рендер из JSON
+// ======================================
+
+function initAbonementsBlock(data) {
+  var section = document.querySelector("#abonements");
+  if (!section) return;
+
+  var grid = section.querySelector("[data-abonements-grid]");
+  if (!grid) return;
+
+  var abonements = Array.isArray(data) ? data : [];
+  if (!abonements.length) {
+    grid.innerHTML = "";
+    return;
+  }
+
+  grid.innerHTML = "";
+
+  abonements.forEach(function (item) {
+    var card = document.createElement("article");
+    card.className = "abonement-card card card-hover";
+    if (item.highlight) {
+      card.classList.add("abonement-card--highlight");
+    }
+
+    var subtitleHtml = item.subtitle
+      ? '<p class="abonement-subtitle">' + item.subtitle + "</p>"
+      : "";
+
+    var noteHtml = item.note
+      ? '<p class="abonement-note">' + item.note + "</p>"
+      : "";
+
+    card.innerHTML =
+      '<div class="abonement-header">' +
+      '<h3 class="abonement-title">' +
+      item.title +
+      "</h3>" +
+      subtitleHtml +
+      "</div>" +
+      '<dl class="abonement-meta">' +
+      '<div class="abonement-meta-row">' +
+      "<dt>Формат:</dt>" +
+      "<dd>" +
+      item.classes +
+      "</dd>" +
+      "</div>" +
+      '<div class="abonement-meta-row">' +
+      "<dt>Длительность:</dt>" +
+      "<dd>" +
+      item.duration +
+      "</dd>" +
+      "</div>" +
+      "</dl>" +
+      '<p class="abonement-bestfor">' +
+      item.bestFor +
+      "</p>" +
+      '<p class="abonement-description">' +
+      item.description +
+      "</p>" +
+      noteHtml;
+
+    grid.appendChild(card);
+  });
+}
+
+// ======================================
 // Награды и фестивали — данные
 // ======================================
 
@@ -2311,5 +2298,20 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(function (error) {
       console.error("Не удалось загрузить данные людей театра:", error);
+    });
+
+  // Абонементы студии — загрузка JSON и рендер
+  fetch("assets/data/abonements.json")
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      initAbonementsBlock(data);
+    })
+    .catch(function (error) {
+      console.error("Не удалось загрузить данные абонементов:", error);
     });
 });
