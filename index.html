@@ -348,29 +348,40 @@
     </section>
 
     <section id="studio" class="section section-studio reveal-on-scroll">
+      <div class="studio-decor" aria-hidden="true"></div>
       <div class="container">
-        <p class="eyebrow eyebrow--dark">О театре и студии</p>
-        <h2>Театр «Эмоцика» и студия «Эмоция» в Санкт-Петербурге</h2>
+        <div id="studio-hero" class="studio-hero reveal-on-scroll reveal-studio-1">
+          <p class="eyebrow eyebrow--dark">О театре и студии</p>
+          <h2>Театр «Эмоцика» и студия «Эмоция» в Санкт-Петербурге</h2>
 
-        <p class="section-intro">
-          Театр «Эмоцика» и студия «Эмоция» — это единое пространство в Санкт-Петербурге,
-          где дети от 3,5 до 16 лет проходят путь от первой реплики на репетиции
-          до настоящего спектакля и съёмок в кино. Мы соединяем тёплую атмосферу студии,
-          серьёзную театральную школу и живой репертуар семейного театра.
-        </p>
+          <p class="section-intro">
+            Театр «Эмоцика» и студия «Эмоция» — это единое пространство в Санкт-Петербурге,
+            где дети от 3,5 до 16 лет проходят путь от первой реплики на репетиции
+            до настоящего спектакля и съёмок в кино. Мы соединяем тёплую атмосферу студии,
+            серьёзную театральную школу и живой репертуар семейного театра.
+          </p>
 
-        <div class="about-facts">
-          <ul class="about-facts-list">
-            <li class="about-fact">10+ лет работаем в Петербурге</li>
-            <li class="about-fact">Дети от 3,5 до 16 лет</li>
-            <li class="about-fact">Филиалы в разных районах города и пригорода</li>
-            <li class="about-fact">Выпускные спектакли на настоящих сценах</li>
-            <li class="about-fact">Киношкола, съёмки и фестивали</li>
-          </ul>
+          <div class="about-facts">
+            <ul class="about-facts-list">
+              <li class="about-fact">10+ лет работаем в Петербурге</li>
+              <li class="about-fact">Дети от 3,5 до 16 лет</li>
+              <li class="about-fact">Филиалы в разных районах города и пригорода</li>
+              <li class="about-fact">Выпускные спектакли на настоящих сценах</li>
+              <li class="about-fact">Киношкола, съёмки и фестивали</li>
+            </ul>
+          </div>
+
+          <nav class="studio-subnav" aria-label="Навигация по разделу о студии">
+            <button type="button" data-scroll-to="studio-hero">Кто мы</button>
+            <button type="button" data-scroll-to="studio-journey">Путь ребёнка</button>
+            <button type="button" data-scroll-to="studio-values">Как мы учим</button>
+            <button type="button" data-scroll-to="studio-stream">Живая жизнь</button>
+            <button type="button" data-scroll-to="contacts">Как записаться</button>
+          </nav>
         </div>
 
         <!-- Этаж 2: две карточки "Театр" и "Студия" -->
-        <div class="studio-duo" aria-label="Театр и студия">
+        <div class="studio-duo reveal-on-scroll reveal-studio-2" aria-label="Театр и студия">
           <article class="studio-card studio-card--theatre">
             <div class="studio-card-kicker">Театр</div>
             <h3 class="studio-card-title">Театр «Эмоцика»</h3>
@@ -404,7 +415,7 @@
           </article>
         </div>
 
-        <div class="studio-layout">
+        <div class="studio-layout reveal-on-scroll reveal-studio-2">
           <div class="studio-column">
             <h3>Основные направления обучения</h3>
             <ul class="studio-list">
@@ -467,9 +478,9 @@
           </div>
         </div>
 
-        <div class="studio-journey" aria-labelledby="studio-journey-title">
+        <div id="studio-journey" class="studio-journey reveal-on-scroll reveal-studio-3" aria-labelledby="studio-journey-title">
           <div class="studio-journey-header">
-            <h3 id="studio-journey-title">Путь ученика в студии</h3>
+            <h3 id="studio-journey-title" class="heading-with-scribble">Путь ученика в студии</h3>
             <p class="studio-journey-lead">
               Как ребёнок растёт в «Эмоции»: от первого пробного занятия до спектакля на сцене
               и участия в фестивалях и съёмках.
@@ -536,9 +547,9 @@
         </div>
 
         <!-- Этаж 4: как мы учим и на что опираемся -->
-        <div class="studio-values" aria-label="Как мы учим и чему уделяем внимание">
+        <div id="studio-values" class="studio-values reveal-on-scroll reveal-studio-4" aria-label="Как мы учим и чему уделяем внимание">
           <div class="studio-values-header">
-            <h3 class="studio-values-title">Как мы учим</h3>
+            <h3 class="studio-values-title heading-with-scribble">Как мы учим</h3>
             <p class="studio-values-lead">
               В основе занятий — игра, бережное отношение к психике ребёнка и проектный формат.
               Всё это помогает детям безопасно пробовать себя на сцене и в кадре.
@@ -610,9 +621,9 @@
         </div>
 
         <!-- Этаж 5: живая жизнь студии -->
-        <div class="studio-stream studio-stream--auto" aria-label="Живая жизнь студии">
+        <div id="studio-stream" class="studio-stream studio-stream--auto reveal-on-scroll reveal-studio-5" aria-label="Живая жизнь студии">
           <div class="studio-stream-header">
-            <h3 class="studio-stream-title">Живая жизнь студии</h3>
+            <h3 class="studio-stream-title heading-with-scribble">Живая жизнь студии</h3>
             <p class="studio-stream-lead">
               Спектакли, съёмки, лагеря и фестивали — так дети проживают театр и кино
               в студии «Эмоция» и театре «Эмоцика» в течение года.
@@ -678,7 +689,7 @@
         </p>
 
         <!-- Этаж 6: финальный CTA-блок -->
-        <div class="studio-cta reveal-on-scroll">
+        <div class="studio-cta reveal-on-scroll reveal-studio-6">
           <div class="studio-cta-shell">
             <p class="studio-cta-eyebrow">Готовы познакомиться ближе?</p>
             <h3 class="studio-cta-title">Сделаем первый шаг вместе</h3>

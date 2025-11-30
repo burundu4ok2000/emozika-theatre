@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const steps = Array.from(
       journey.querySelectorAll(".studio-journey-step[data-title][data-text]")
     );
+    const journeyTrack = journey.querySelector(".studio-journey-track");
     const detailTitle = journey.querySelector(".studio-journey-detail-title");
     const detailText = journey.querySelector(".studio-journey-detail-text");
 
@@ -139,6 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       detailTitle.textContent = title;
       detailText.textContent = text;
+
+      // прогресс-линия в треке
+      if (journeyTrack && steps.length > 1 && activeIndex !== -1) {
+        const progress = (activeIndex / (steps.length - 1)) * 100;
+        journeyTrack.style.setProperty("--journey-progress", progress + "%");
+      }
     }
 
     // стартовое состояние
