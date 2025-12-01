@@ -6925,7 +6925,7 @@ gallery__video-item iframe {
 
 /* Лёгкая полупрозрачность карточек, чтобы сквозь них был виден постер */
 .section-snow-queen .snow-queen-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 /* Анимация появления сетки карточек после небольшой задержки */
@@ -6933,8 +6933,8 @@ gallery__video-item iframe {
   opacity: 0;
   transform: translateY(32px);
   transition:
-    opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 0.1),
+    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 0.1);
 }
 
 .section-snow-queen .snow-queen-grid.snow-queen-grid--visible {
