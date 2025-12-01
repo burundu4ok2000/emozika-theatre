@@ -301,36 +301,37 @@
 
     <section id="snow-queen" class="section section-snow-queen reveal-on-scroll">
       <div class="container">
-        <header class="section-header">
+        <header class="section-header section-header--center snow-queen-header">
           <p class="section-kicker">Новогодняя программа театра</p>
-          <h2 class="section-title section-title--handdrawn">
-            Новогодняя программа «Снежная королева»
-          </h2>
+          <h2 class="section-title">Новогодняя программа «Снежная королева»</h2>
           <p class="section-subtitle">
             Тёплый спектакль с квестом по театру и встречей с героями сказки.
-            Формат подходит и для целых классов и для семейных визитов.
+            Формат подходит и для целых классов, и для семейных визитов.
           </p>
         </header>
 
-        <figure class="snow-poster">
+        <figure class="snow-queen-poster">
           <img
-            src="assets/img/posters/snow-queen-horizontal.png"
-            alt="Новогодний спектакль «Снежная королева»"
-            class="snow-poster-image"
+            src="assets/img/posters/snow-queen.png"
+            alt="Постер новогодней программы «Снежная королева»"
           />
         </figure>
 
         <div class="snow-queen-tags-row">
-          <span class="badge badge--brand snow-queen-tag">6+</span>
-          <span class="badge badge--soft snow-queen-tag">Квест + спектакль</span>
-          <span class="badge badge--soft snow-queen-tag">Программа ≈ 2 часа</span>
-          <span class="badge badge--soft snow-queen-tag">Камерный зал до 50 зрителей</span>
+          <span class="badge badge--glass">6+</span>
+          <span class="badge badge--glass">Квест + спектакль</span>
+          <span class="badge badge--glass">Программа ≈ 2 часа</span>
+          <span class="badge badge--glass">Камерный зал до 50 зрителей</span>
         </div>
 
         <div class="snow-queen-grid">
-          <article class="snow-queen-card snow-queen-card--schools card-luxe">
-            <h3 class="snow-queen-card-title">Для классов и садов</h3>
-            <ul class="snow-queen-list">
+          <!-- Блок для организованных классов -->
+          <article class="snow-queen-card card-luxe">
+            <h3 class="snow-queen-card-title">
+              Для школьных классов и детских садов
+            </h3>
+
+            <ul class="snow-queen-card-list">
               <li>4–6 этапов поискового квеста по залу и фойе.</li>
               <li>Погружение в историю «Снежной королевы» с актёрами театра.</li>
               <li>Встреча с Дедом Морозом, общее фото и вручение подарков.</li>
@@ -339,57 +340,44 @@
             </ul>
 
             <div class="snow-queen-card-actions">
-              <button
-                type="button"
-                class="btn btn-primary snow-queen-btn-main"
-                data-scroll-to="contacts"
-              >
+              <a href="#contacts" class="btn btn-primary btn-lg">
                 Оставить заявку на класс
-              </button>
-              <button
-                type="button"
-                class="btn btn-ghost snow-queen-btn-secondary"
-                data-scroll-to="contacts"
-              >
-                Получить напоминание
-              </button>
+              </a>
+              <a href="#tickets" class="btn btn-outline btn-lg">
+                Купить билеты
+              </a>
             </div>
           </article>
 
-          <article class="snow-queen-card snow-queen-card--family card-luxe">
+          <!-- Блок для семейных визитов -->
+          <article class="snow-queen-card card-luxe snow-queen-card--accent">
             <h3 class="snow-queen-card-title">Для семейных визитов</h3>
-            <ul class="snow-queen-list">
+
+            <ul class="snow-queen-card-list">
               <li>Отдельные показы с камерной рассадкой (до 50 зрителей).</li>
               <li>Есть даты с квестом перед спектаклем и без него.</li>
-              <li>Рекомендованный возраст — 5–12 лет.</li>
+              <li>Рекомендованный возраст детей — 5–12 лет.</li>
               <li>Все билеты — с местами у сцены и быстрым доступом в зал.</li>
-              <li>Напоминание о старте продаж отправляем по запросу.</li>
+              <li>
+                Можно прийти всей семьёй или небольшой компанией друзей.
+              </li>
             </ul>
 
             <div class="snow-queen-card-actions">
-              <button
-                type="button"
-                class="btn btn-primary snow-queen-btn-main"
-                data-scroll-to="contacts"
-              >
-                Узнать о ближайших показах
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary snow-queen-btn-secondary snow-queen-btn-secondary--outline"
-                data-scroll-to="contacts"
-              >
-                Получить напоминание
-              </button>
+              <a href="#tickets" class="btn btn-primary btn-lg">
+                Купить билеты
+              </a>
+              <a href="#contacts" class="btn btn-outline btn-lg">
+                Оставить заявку на группу
+              </a>
             </div>
           </article>
         </div>
 
         <p class="snow-queen-note">
-          Мы резервируем даты под конкретные классы и подбираем тайминг под расписание школ.
-          Для семейных показов заранее сообщаем дату и старт продаж в соцсетях.
-          Постановка и квест подготовлены вместе с педагогами студии «Эмоцика» и актёрами театра,
-          которые сопровождают детей с первой минуты визита.
+          Квест проходит до спектакля: дети ищут подсказки в фойе и зале, знакомятся
+          с миром «Снежной королевы», а затем садятся на спектакль. Подробности
+          программ и свободные даты мы пришлём по запросу.
         </p>
       </div>
     </section>

@@ -6777,3 +6777,47 @@ gallery__video-item iframe {
   object-position: center;
   display: block;
 }
+
+/* Snow Queen — фон-постер на весь экран и более низкие карточки */
+@media (min-width: 768px) {
+  .section-snow-queen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-snow-queen .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Убираем старые «световые круги», чтобы постер читался чище */
+  .section-snow-queen::before,
+  .section-snow-queen::after {
+    display: none;
+  }
+
+  /* Опускаем блоки с текстом вниз, чтобы было видно надпись на постере */
+  .section-snow-queen .snow-queen-grid {
+    margin-top: 96px;
+  }
+}
+
+/* Лёгкая полупрозрачность карточек, чтобы сквозь них был виден постер */
+.section-snow-queen .snow-queen-card {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Анимация появления сетки карточек после небольшой задержки */
+.section-snow-queen .snow-queen-grid {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.section-snow-queen .snow-queen-grid.snow-queen-grid--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
