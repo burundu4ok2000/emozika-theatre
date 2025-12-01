@@ -12,8 +12,8 @@
       "hall": "Камерный зал на ~50 зрителей",
       "city": "Санкт-Петербург",
       "poster": {
-        "desktop": "assets/img/posters/love-wide.jpg",
-        "mobile": "assets/img/posters/love-vert.jpg"
+        "desktop": "assets/img/posters/love-tank-hero.png",
+        "mobile": "assets/img/posters/love-tank-hero.png"
       },
       "badge": "Премьера сезона",
       "badgeType": "premiere",
