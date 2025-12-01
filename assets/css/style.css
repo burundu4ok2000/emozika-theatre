@@ -47,6 +47,11 @@
   --hand-underline-width: 140px;
   --hand-underline-height: 14px;
   --hand-underline-opacity: 0.5;
+
+  /* 8. Motion */
+  --motion-fast: 0.15s;
+  --motion-normal: 0.2s;
+  --motion-ease-soft: cubic-bezier(0.19, 0.72, 0.26, 0.99);
 }
 
 html {
@@ -331,7 +336,12 @@ img {
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .btn-primary {
@@ -386,7 +396,11 @@ img {
 .site-nav a:focus-visible,
 .floating-cta:focus-visible,
 .social-pill:focus-visible,
-.contact-link:focus-visible {
+.contact-link:focus-visible,
+.afisha-card:focus-visible,
+.abonement-card:focus-visible,
+.films-card:focus-visible,
+.award-badge:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 3px;
 }
@@ -1080,7 +1094,11 @@ img {
   background: var(--color-surface);
   border: 1px solid rgba(8, 2, 26, 0.05);
   box-shadow: 0 10px 26px rgba(8, 2, 26, 0.06);
-  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .abonement-card:hover {
@@ -1312,7 +1330,11 @@ img {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .afisha-card-main {
@@ -3730,10 +3752,10 @@ body.is-lightbox-open {
   text-align: left;
   cursor: pointer;
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease,
-    background-color 0.18s ease;
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .films-card:focus-visible {
@@ -4562,10 +4584,10 @@ body.is-lightbox-open {
   flex-direction: column;
   gap: 0.25rem;
   transition:
-    transform 180ms ease-out,
-    box-shadow 180ms ease-out,
-    border-color 180ms ease-out,
-    background 180ms ease-out;
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .award-badge:hover,
@@ -4938,14 +4960,18 @@ body.is-lightbox-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba(8, 2, 26, 0.85);
-  color: #fff;
-  backdrop-filter: blur(6px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.06));
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .afisha-card-badge--premiere {
@@ -5523,13 +5549,17 @@ gallery__video-item iframe {
 }
 
 .branch-metro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px 10px;
   border-radius: 999px;
   background: rgba(122, 47, 180, 0.08);
   font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-brand-dark);
-  text-transform: none;
 }
 
 .branch-place {
@@ -5557,10 +5587,18 @@ gallery__video-item iframe {
 }
 
 .branch-area {
-  font-size: 12px;
-  padding: 2px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(8, 2, 26, 0.04);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(122, 47, 180, 0.28);
+  background: rgba(8, 2, 26, 0.02);
+  color: var(--color-brand-dark);
 }
 
 .branch-comment {
@@ -5596,12 +5634,18 @@ gallery__video-item iframe {
   position: absolute;
   top: 10px;
   right: 12px;
-  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(122, 47, 180, 0.9);
-  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-dark));
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(27, 5, 56, 0.28);
 }
 
 .branches-note {
@@ -6389,7 +6433,11 @@ gallery__video-item iframe {
   box-shadow: 0 20px 60px rgba(8, 2, 26, 0.12);
   border: 1px solid rgba(122, 47, 180, 0.1);
   padding: 22px 20px;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 @media (max-width: 600px) {
@@ -6413,7 +6461,11 @@ gallery__video-item iframe {
   background: var(--color-bg-paper);
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(8, 2, 26, 0.08);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
 }
 
 .afisha-card-main {
