@@ -4067,7 +4067,8 @@ body.is-lightbox-open {
 
 .films-video-frame {
   position: relative;
-  padding-top: 56.25%; /* 16:9 */
+  width: 100%;
+  aspect-ratio: 16 / 9; /* единый формат для всех видео */
   border-radius: 14px;
   overflow: hidden;
   background: #050014;
@@ -5320,16 +5321,15 @@ body.is-lightbox-open {
 /* Кнопки под постером */
 
 .afisha-buttons--strip {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin-top: 8px;
 }
 
 @media (max-width: 640px) {
   .afisha-buttons--strip {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -6925,7 +6925,21 @@ gallery__video-item iframe {
 
 /* Лёгкая полупрозрачность карточек, чтобы сквозь них был виден постер */
 .section-snow-queen .snow-queen-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.27);
+  transition: background 1.2s ease;
+  transition-delay: 1.8s; /* выдержка перед «затуханием» после ухода курсора */
+}
+
+.section-snow-queen .snow-queen-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transition: background 0.2s ease;
+  transition-delay: 0s;
+}
+
+@media (max-width: 767.98px) {
+  .section-snow-queen .snow-queen-card {
+    background: rgba(255, 255, 255, 0.7);
+  }
 }
 
 /* Анимация появления сетки карточек после небольшой задержки */
@@ -6963,4 +6977,62 @@ gallery__video-item iframe {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-align: center;
+}
+
+/* ШАГ 2. style.css — ДОБАВИТЬ СТИЛИ ДЛЯ НОВОЙ СЕКЦИИ ПОДРОБНОСТЕЙ */
+
+.section-snow-queen-details {
+  padding: 56px 0 72px;
+  background: var(--color-bg-paper);
+}
+
+.snow-queen-details {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 24px 24px 26px;
+}
+
+.snow-queen-details-title {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+.snow-queen-details-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.snow-queen-details-column {
+  min-width: 0;
+}
+
+.snow-queen-details-heading {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+.snow-queen-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* десктоп — делаем две колонки */
+@media (min-width: 768px) {
+  .snow-queen-details {
+    padding: 28px 32px 30px;
+  }
+
+  .snow-queen-details-columns {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+  }
 }

@@ -436,11 +436,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "</h3>" +
             '<div class="afisha-buttons afisha-buttons--strip">' +
             (play.ticketUrl
-              ? '<a class="btn btn-primary" href="' +
+              ? '<a class="btn btn-primary btn-lg" href="' +
                 play.ticketUrl +
                 '" target="_blank" rel="noopener">Купить билет</a>'
               : "") +
-            '<button type="button" class="afisha-more" data-play-open="' +
+            '<button type="button" class="btn btn-outline btn-lg" data-play-open="' +
             play.id +
             '">Подробнее о спектакле</button>' +
             "</div>" +
