@@ -4873,6 +4873,37 @@ body.is-lightbox-open {
   padding: 0.5rem 0.25rem 0.75rem;
 }
 
+.awards-strip-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.awards-strip-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(6, 0, 30, 0.65);
+  color: #fff;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.awards-strip-btn:hover,
+.awards-strip-btn:focus-visible {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* мобилки: ручной горизонтальный скролл */
 @media (max-width: 1023px) {
   .awards-strip-inner {
@@ -4894,7 +4925,7 @@ body.is-lightbox-open {
 
 .award-badge {
   flex: 0 0 auto;
-  min-width: min(320px, 80vw);
+  min-width: min(90px, 35vw);
   padding: 0.9rem 1.1rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -4934,6 +4965,9 @@ body.is-lightbox-open {
 .award-badge-text {
   font-size: 0.8rem;
   opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* особое выделение Гран-при */
@@ -5101,6 +5135,28 @@ body.is-lightbox-open {
 
   .awards-strip--auto:hover .awards-strip-inner {
     animation-play-state: paused;
+  }
+
+  .awards-strip--auto.awards-strip--manual-control .awards-strip-inner {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+
+  .awards-strip--manual-control .awards-strip-viewport {
+    overflow-x: auto;
+  }
+
+  .awards-strip--manual-control .awards-strip-inner {
+    scroll-snap-type: x mandatory;
+  }
+
+  .awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
   }
 
   @keyframes awards-strip-scroll {

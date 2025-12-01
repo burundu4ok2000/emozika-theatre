@@ -2466,6 +2466,22 @@ function renderTopAwardsStrip(container, topAwards) {
   }
 }
 
+function initAwardsStripControls(stripEl) {
+  if (!stripEl) return;
+
+  const viewport = stripEl.querySelector(".awards-strip-viewport");
+  const buttons = stripEl.querySelectorAll("[data-awards-scroll]");
+  if (!viewport || !buttons.length) return;
+
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const direction = button.dataset.awardsScroll === "prev" ? -1 : 1;
+      const distance = Math.max(viewport.clientWidth * 0.7, 160);
+      viewport.scrollBy({ left: direction * distance, behavior: "smooth" });
+    });
+  });
+}
+
 function renderFestivalCards(container, festivals) {
   if (!container) return;
   container.innerHTML = "";
@@ -2553,6 +2569,7 @@ function initAwardsBlock(festivals) {
   const topAwards = buildTopAwardsFromFestivals(festivals);
 
   renderTopAwardsStrip(stripRoot, topAwards);
+  initAwardsStripControls(awardsSection.querySelector("[data-awards-strip]"));
   renderFestivalCards(festivalsRoot, festivals);
 }
 
