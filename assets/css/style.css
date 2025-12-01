@@ -53,6 +53,7 @@
   --motion-fast: 0.15s;
   --motion-normal: 0.2s;
   --motion-ease-soft: cubic-bezier(0.19, 0.72, 0.26, 0.99);
+  --motion-snow: 26s; /* медленная плавная анимация снега */
 }
 
 html {
@@ -2270,6 +2271,59 @@ body.is-lightbox-open {
     display: none;
   }
 }
+
+/* Лёгкий снег для новогодней секции */
+@keyframes snow-drift {
+  0% {
+    background-position:
+      0 0,
+      80px -40px;
+  }
+
+  100% {
+    background-position:
+      -140px 80px,
+      0 40px;
+  }
+}
+
+/* Снежный слой поверх контента Snow Queen – только на десктопе */
+@media (min-width: 768px) {
+  .section-snow-queen .container {
+    position: relative;
+    z-index: 0;
+  }
+
+  .section-snow-queen .container::before {
+    content: "";
+    position: absolute;
+    inset: -40px -20px;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.8) 0, rgba(255, 255, 255, 0) 55%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0) 50%);
+    background-repeat: repeat;
+    background-size:
+      180px 260px,
+      220px 300px;
+    background-position:
+      0 0,
+      80px -40px;
+    mix-blend-mode: screen;
+    opacity: 0.55;
+    animation: snow-drift var(--motion-snow) linear infinite;
+  }
+}
+
+/* Для тех, кто включает уменьшение анимации – статичный лёгкий шум */
+@media (prefers-reduced-motion: reduce) {
+  .section-snow-queen .container::before {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
 /* ===== ARCHIVE ===== */
 
 .section-archive {
