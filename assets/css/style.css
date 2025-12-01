@@ -6892,3 +6892,26 @@ gallery__video-item iframe {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* STUDIO: бейдж "Театр-студия" поверх карточки */
+
+.section-studio .studio-theatre-intro {
+  position: relative;
+  padding-top: 30px; /* место под бейдж внутри карточки */
+}
+
+/* Плашка "Театр-студия", сидит на бортике карточки */
+.section-studio .studio-theatre-intro > .section-kicker {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 4px 14px;
+  background: var(--color-bg-warm);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(8, 2, 26, 0.08);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-align: center;
+}
