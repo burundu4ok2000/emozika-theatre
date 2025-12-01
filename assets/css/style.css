@@ -2721,6 +2721,77 @@ body.is-lightbox-open {
   font-weight: 600;
 }
 
+/* STUDIO: шапка и крышечка "Где проходят занятия и показы" */
+
+/* Шапка раздела внутри блока студии */
+.section-studio .section-header {
+  max-width: 640px;
+  margin: 0 0 28px;
+}
+
+.section-studio .section-header--left {
+  margin: 0 0 28px;
+}
+
+/* Выравниваем "Оглавление" и подзаголовок по левому краю */
+.section-studio .section-header--left .section-kicker,
+.section-studio .section-header--left .section-subtitle {
+  text-align: left;
+  margin-left: 0;
+}
+
+.section-studio .section-header--left .section-subtitle {
+  margin-right: 0;
+}
+
+/* Крышечка "Театр-студия" с карточкой */
+.section-studio .studio-theatre-intro {
+  margin: 4px auto 28px;
+  max-width: 960px;
+  padding: 20px 26px 22px;
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.98),
+      #fdf8ff
+    );
+  border-radius: 24px;
+  border: 1px solid rgba(122, 47, 180, 0.12);
+  box-shadow: 0 18px 40px rgba(8, 2, 26, 0.06);
+  text-align: left;
+}
+
+/* Сам бейдж "Театр-студия" оставляем по центру */
+.section-studio .studio-theatre-intro .section-kicker {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Заголовок внутри карточки */
+.section-studio .studio-theatre-heading {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  color: var(--color-brand-dark);
+}
+
+/* Текст с фактами про возраст, филиалы и города */
+.section-studio .studio-theatre-text {
+  max-width: 720px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-main);
+  margin: 0 0 16px;
+}
+
+.section-studio .studio-theatre-text p {
+  margin: 0 0 4px;
+}
+
+/* Кнопка "Посмотреть филиалы" — чуть уверенный размер */
+.section-studio .studio-theatre-branches {
+  min-width: 190px;
+}
+
 /* Две вертикальные дорожки: театральная студия и киношкола */
 
 .section-studio .studio-column {
