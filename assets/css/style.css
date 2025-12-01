@@ -4181,7 +4181,7 @@ body.is-lightbox-open {
 @media (min-width: 768px) {
   .films-detail {
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     gap: 24px;
   }
 
@@ -4191,6 +4191,7 @@ body.is-lightbox-open {
 
   .films-detail-body {
     flex: 1 1 auto;
+    align-self: stretch;
   }
 }
 
