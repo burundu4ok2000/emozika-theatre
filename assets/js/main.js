@@ -1190,10 +1190,15 @@ function initPeopleBlock(data) {
       figure.className = "person-photo";
 
       if (person.photoUrl) {
+        const photoWrapper = document.createElement("div");
+        photoWrapper.className = "people-card-photo";
+
         const img = document.createElement("img");
         img.src = person.photoUrl;
         img.alt = person.name || "";
-        figure.appendChild(img);
+
+        photoWrapper.appendChild(img);
+        figure.appendChild(photoWrapper);
       }
 
       const content = document.createElement("div");
