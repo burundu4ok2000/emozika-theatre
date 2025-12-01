@@ -2259,7 +2259,7 @@ body.is-lightbox-open {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
 }
 /* ===== ARCHIVE ===== */
