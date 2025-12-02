@@ -590,19 +590,32 @@ img {
   padding: 6px 12px;
   border-radius: 999px;
   background: rgba(122, 47, 180, 0.08);
+  text-decoration: none;
+  color: var(--color-brand-dark);
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.logo-badge:hover,
+.logo-badge:focus-visible {
+  background: rgba(122, 47, 180, 0.16);
+  box-shadow: 0 8px 18px rgba(122, 47, 180, 0.18);
+  transform: translateY(-1px);
 }
 
 .logo-mark {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(213, 154, 255, 0.4), rgba(122, 47, 180, 0.18));
+  padding: 2px;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px rgba(122, 47, 180, 0.14),
+    0 4px 12px rgba(74, 23, 123, 0.18);
+  box-sizing: border-box;
 }
 
 .logo-text {
@@ -5021,22 +5034,24 @@ body.is-lightbox-open {
 
 .awards-strip-controls {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.65rem;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
 }
 
 .awards-strip-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(6, 0, 30, 0.65);
+  flex: 1 1 0;
+  min-width: 0;
+  height: 26px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(6, 0, 30, 0.55);
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0 14px;
   cursor: pointer;
   transition:
     background 150ms ease,
@@ -5046,7 +5061,7 @@ body.is-lightbox-open {
 
 .awards-strip-btn:hover,
 .awards-strip-btn:focus-visible {
-  border-color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -5065,15 +5080,28 @@ body.is-lightbox-open {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 999px;
   }
+
+  .awards-strip-controls {
+    justify-content: center;
+    gap: 8px;
+    padding-top: 16px;
+    margin-top: 18px;
+  }
+
+  .awards-strip-btn {
+    height: 28px;
+    font-size: 1rem;
+  }
 }
 
 /* бейджи топ-наград (по одному на ленте) */
 
 .award-badge {
   flex: 0 0 auto;
-  min-width: min(90px, 35vw);
-  padding: 0.9rem 1.1rem;
-  border-radius: 999px;
+  width: var(--award-badge-size, clamp(130px, 26vw, 170px));
+  height: var(--award-badge-size, clamp(130px, 26vw, 170px));
+  padding: 1.1rem;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 55%),
@@ -5086,7 +5114,10 @@ body.is-lightbox-open {
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.25rem;
+  text-align: center;
   transition:
     transform var(--motion-normal) var(--motion-ease-soft),
     box-shadow var(--motion-normal) var(--motion-ease-soft),
@@ -5104,16 +5135,15 @@ body.is-lightbox-open {
 }
 
 .award-badge-title {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .award-badge-text {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.25;
 }
 
 /* особое выделение Гран-при */
@@ -6427,12 +6457,25 @@ gallery__video-item iframe {
   gap: 10px;
 }
 
+.contacts__actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contacts__actions .btn .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
 .contacts__map iframe {
   display: block;
   width: 100%;
-  min-height: 220px;
+  height: 100%;
+  min-height: 260px;
   border: 0;
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: 0 18px 40px rgba(8, 2, 26, 0.18);
 }
 
@@ -6773,22 +6816,40 @@ gallery__video-item iframe {
 .footer__logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(130deg, rgba(12, 6, 30, 0.9), rgba(22, 10, 46, 0.82));
+  border: 1px solid rgba(132, 209, 255, 0.26);
   text-decoration: none;
   transition:
     background-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease;
+  box-shadow:
+    0 12px 30px rgba(5, 2, 15, 0.6),
+    0 0 0 1px rgba(120, 200, 255, 0.12);
+}
+
+.footer__logo::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 20% 30%, rgba(150, 220, 255, 0.12), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(245, 240, 255, 0.08), transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: footer-film-glow 10s linear infinite;
 }
 
 .footer__logo:hover,
 .footer__logo:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  background: linear-gradient(130deg, rgba(18, 10, 44, 0.95), rgba(30, 16, 62, 0.9));
+  box-shadow:
+    0 16px 34px rgba(5, 2, 15, 0.7),
+    0 0 0 1px rgba(150, 220, 255, 0.2);
   transform: translateY(-1px);
 }
 
@@ -6798,16 +6859,33 @@ gallery__video-item iframe {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 999px;
-  background-color: rgba(213, 154, 255, 0.2);
-  color: var(--color-brand-dark);
-  font-weight: 700;
-  font-size: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(213, 154, 255, 0.4), rgba(122, 47, 180, 0.18));
+  padding: 2px;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px rgba(120, 200, 255, 0.1),
+    0 3px 10px rgba(74, 23, 123, 0.16);
 }
 
 .footer__name {
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #d9ebff;
+  letter-spacing: 0.01em;
+}
+
+@keyframes footer-film-glow {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translate3d(-6%, -6%, 0);
+    opacity: 0.65;
+  }
 }
 
 .footer__copy {

@@ -2435,14 +2435,38 @@ function renderTopAwardsStrip(container, topAwards) {
   // Базовый набор бейджей
   var badgesHtml = topAwards.map(getBadgeHtml).join("");
 
-  // Рендерим первую «дорожку»
-  container.innerHTML = badgesHtml;
-
-  // Если у родителя стоит класс автоленты — дублируем содержимое,
-  // чтобы CSS-анимация по -50% крутила бесконечную ленту без дыр
+  // Если автолента — размножаем набор бейджей, чтобы создать бесшовный цикл.
   var autoStripParent = container.closest(".awards-strip--auto");
-  if (autoStripParent) {
+  var repeatCount = autoStripParent ? 5 : 1;
+
+  container.innerHTML = "";
+  for (var r = 0; r < repeatCount; r++) {
     container.innerHTML += badgesHtml;
+  }
+
+  // Подстраиваем размер круга под самый «толстый» бейдж первой партии
+  var maxSize = 0;
+  var badges = container.querySelectorAll(".award-badge");
+  badges.forEach(function (badge, index) {
+    if (repeatCount > 1 && index >= topAwards.length) return; // считаем только оригинал
+    var rect = badge.getBoundingClientRect();
+    maxSize = Math.max(maxSize, rect.width, rect.height);
+  });
+  if (maxSize > 0) {
+    var targetSize = Math.ceil(maxSize + 20);
+    container.style.setProperty("--award-badge-size", targetSize + "px");
+  }
+
+  // Запоминаем базовую ширину одного цикла и ставим скролл в центр,
+  // чтобы было пространство для прокрутки в обе стороны.
+  if (repeatCount > 1) {
+    var baseWidth = container.scrollWidth / repeatCount;
+    var viewport = container.parentElement;
+    if (viewport) {
+      viewport.scrollLeft = baseWidth * Math.floor(repeatCount / 2);
+    }
+    container.dataset.awardsBaseWidth = String(baseWidth);
+    container.dataset.awardsRepeat = String(repeatCount);
   }
 
   // Один обработчик на весь контейнер (делегирование кликов)
@@ -2471,6 +2495,7 @@ function initAwardsStripControls(stripEl) {
 
   const viewport = stripEl.querySelector(".awards-strip-viewport");
   const buttons = stripEl.querySelectorAll("[data-awards-scroll]");
+  const inner = stripEl.querySelector(".awards-strip-inner");
   if (!viewport || !buttons.length) return;
 
   buttons.forEach(function (button) {
@@ -2480,6 +2505,23 @@ function initAwardsStripControls(stripEl) {
       viewport.scrollBy({ left: direction * distance, behavior: "smooth" });
     });
   });
+
+  // Бесконечная лента: если содержимое дублировано (auto-лента),
+  // то при прокрутке переставляем scrollLeft, чтобы сразу после конца шёл старт.
+  const repeatCount = inner && inner.dataset.awardsRepeat ? parseInt(inner.dataset.awardsRepeat, 10) : 1;
+  const baseWidth = inner && inner.dataset.awardsBaseWidth ? parseFloat(inner.dataset.awardsBaseWidth) : 0;
+  if (repeatCount > 1 && baseWidth > 0) {
+    const minEdge = baseWidth * 0.5;
+    const maxEdge = baseWidth * (repeatCount - 1.5);
+
+    viewport.addEventListener("scroll", function () {
+      if (viewport.scrollLeft > maxEdge) {
+        viewport.scrollLeft -= baseWidth * (repeatCount - 2);
+      } else if (viewport.scrollLeft < minEdge) {
+        viewport.scrollLeft += baseWidth * (repeatCount - 2);
+      }
+    });
+  }
 }
 
 function renderFestivalCards(container, festivals) {

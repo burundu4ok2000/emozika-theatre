@@ -13,6 +13,7 @@
     content="Детский театр и студия «Эмоцика» в Санкт-Петербурге. Спектакль «Любовь у сливного бачка», афиша, фото и видео, документы и контакты для родителей."
   />
   <link rel="icon" type="image/png" href="assets/img/ui/favicon.png">
+  <link rel="shortcut icon" href="assets/img/ui/favicon.png" type="image/png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ui/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/ui/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/ui/apple-touch-icon.png">
@@ -24,12 +25,16 @@
     <a href="#main-content" class="skip-link">Перейти к содержимому</a>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo-badge">
-        <span class="logo-mark">Э</span>
+      <a href="#hero" class="logo-badge" data-scroll-to="hero">
+        <img
+          class="logo-mark"
+          src="assets/img/ui/favicon.png"
+          alt="Логотип театра «Эмоцика»"
+        />
         <span class="logo-text">Театр «Эмоцика»</span>
-      </div>
+      </a>
 
-      <nav class="main-nav" aria-label="Основная навигация">
+      <!-- <nav class="main-nav" aria-label="Основная навигация">
         <button type="button" class="nav-link" data-scroll-to="afisha">Афиша</button>
         <button type="button" class="nav-link" data-scroll-to="snow-queen">Новый год</button>
         <button type="button" class="nav-link" data-scroll-to="studio">Студия</button>
@@ -42,7 +47,18 @@
         <button type="button" class="nav-link nav-link-cta" data-scroll-to="contacts">
           Записаться
         </button>
+      </nav> -->
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <button type="button" class="nav-link" data-scroll-to="afisha">Афиша</button>
+        <button type="button" class="nav-link" data-scroll-to="snow-queen">Новый год</button>
+        <button type="button" class="nav-link" data-scroll-to="people">Люди</button>
+        <button type="button" class="nav-link" data-scroll-to="awards">Награды</button>
+        <button type="button" class="nav-link nav-link-cta" data-scroll-to="contacts">
+          Записаться
+        </button>
       </nav>
+
     </div>
   </header>
 
@@ -1587,7 +1603,7 @@
     </section>
     -->
 
-    <section id="contacts" class="section section--contacts section-card">
+    <!-- <section id="contacts" class="section section--contacts section-card">
       <div class="section-inner">
         <div class="container contacts">
           <div class="contacts__info card-luxe">
@@ -1655,7 +1671,7 @@
           </div>
 
           <div class="contacts__map card-luxe">
-            <!-- Здесь остаётся твой iframe Яндекс.Карт -->
+            <%-- Здесь остаётся твой iframe Яндекс.Карт --%>
             <iframe
               src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample"
               loading="lazy"
@@ -1674,11 +1690,78 @@
           </div>
         </div>
       </div>
+    </section> -->
+
+    <section id="contacts" class="section section--contacts section-card">
+      <div class="section-inner">
+        <div class="container contacts">
+          <div class="contacts__info card-luxe">
+            <header class="section-header section-header--left">
+              <!-- <p class="section-kicker">Как с нами связаться</p> -->
+              <h2 class="section-title">Контакты</h2>
+              <p class="contacts__text section-subtitle">
+                Записаться на пробное занятие, уточнить расписание или задать любой вопрос
+                можно у администратора театра и студии.
+              </p>
+            </header>
+
+            <dl class="contacts__list">
+              <div class="contacts__row">
+                <dt>Телефон:</dt>
+                <dd>
+                  <a href="tel:+79313157787">+7 (931) 315-77-87</a>
+                  <span class="contacts__note">— звонки и WhatsApp</span>
+                </dd>
+              </div>
+              <div class="contacts__row">
+                <dt>Email:</dt>
+                <dd>
+                  <a href="mailto:info@emozia.ru">info@emozia.ru</a>
+                </dd>
+              </div>
+              <div class="contacts__row">
+                <dt>Адрес сцены:</dt>
+                <dd>Санкт-Петербург, проспект Энгельса, 154, ТРК «Гранд Каньон», 3-й этаж</dd>
+              </div>
+            </dl>
+
+            <p class="contacts__note">
+              Занятия студии проходят в нескольких филиалах Санкт-Петербурга — 
+              подберём удобную площадку и время для вашей семьи.
+            </p>
+            <p class="contacts__time">
+              Мы на связи ежедневно с 11:00 до 20:00.
+            </p>
+
+            <div class="contacts__actions">
+              <a href="https://wa.me/79313157787" class="btn btn-primary" target="_blank" rel="noopener">
+                <img src="assets/img/ui/whatsapp-icon.svg" alt="" class="icon">
+                Написать в WhatsApp
+              </a>
+              <a href="https://vk.com/teatr.emocika" class="btn btn-outline" target="_blank" rel="noopener">
+                Мы во ВКонтакте
+              </a>
+            </div>
+          </div>
+
+          <div class="contacts__map card-luxe">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=30.334166%2C60.059444&z=16&l=map"
+              loading="lazy"
+              title="Карта проезда в театр «Эмоция», ТРК «Гранд Каньон»"
+              allowfullscreen
+              style="border: 0"
+            ></iframe>
+          </div>
+
+        </div>
+      </div>
     </section>
+
 
   </main>
 
-  <footer class="footer">
+  <!-- <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
@@ -1712,7 +1795,53 @@
         </div>
       </div>
     </div>
+  </footer> -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__brand">
+          <a href="#hero" class="footer__logo" data-scroll-to="hero">
+            <img
+              class="footer__mark"
+              src="assets/img/ui/favicon.png"
+              alt="Логотип театра «Эмоцика»"
+            />
+            <span class="footer__name">Театр «Эмоцика»</span>
+          </a>
+          <p class="footer__copy">
+            © 2014–2025, театр «Эмоцика» и студия «Эмоция». Все права защищены.
+          </p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация по сайту">
+          <a href="#afisha" class="footer__link" data-scroll-to="afisha">Афиша</a>
+          <a href="#snow-queen" class="footer__link" data-scroll-to="snow-queen">Новый год</a>
+          <a href="#people" class="footer__link" data-scroll-to="people">Люди театра</a>
+          <a href="#awards" class="footer__link" data-scroll-to="awards">Награды</a>
+          <a href="#docs" class="footer__link" data-scroll-to="docs">Документы</a>
+          <a href="#contacts" class="footer__link" data-scroll-to="contacts">Контакты</a>
+        </nav>
+
+        </nav>
+        <div class="footer__meta">
+          <p class="footer__license">
+            Лицензия на образовательную деятельность 
+            № 03-21-6065/24-0-3 от 05.11.2024,
+            рег. № 1035-01271-78/01491532, 
+            ИП&nbsp;Бурундукова&nbsp;Е.&nbsp;А.
+          </p>
+
+          <a href="#" class="footer__link footer__link--small">Политика конфиденциальности</a>
+          <p class="footer__dev">
+            Сайт разработал <a href="https://telegram.me/BurundukovS" target="_blank" rel="noopener" class="footer__link footer__link--small">BurundukovS</a>
+          </p>
+        </div>
+      </div>
+    </div>
   </footer>
+
 
   <!-- Модальное окно спектакля -->
   <div class="play-modal" data-play-modal hidden>
