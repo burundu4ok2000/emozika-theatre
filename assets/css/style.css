@@ -2061,15 +2061,94 @@ body.is-lightbox-open {
   padding: 72px 0 64px;
   overflow: hidden;
   background:
+    radial-gradient(circle at 50% 18%, rgba(88, 180, 255, 0.25), rgba(10, 32, 54, 0) 42%),
     linear-gradient(
-      to bottom,
-      rgba(6, 3, 27, 0.6),
-      rgba(6, 3, 27, 0.25),
-      rgba(6, 3, 27, 0.85)
-    ),
-    url("../img/posters/snow-queen-horizontal.png")
-      center center / cover no-repeat;
+      180deg,
+      #0b1a2d 0%,
+      #12355d 32%,
+      #16507f 60%,
+      #0f2d4c 80%,
+      #091628 100%
+    );
 }
+
+.snow-queen-poster {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.snow-queen-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(5, 10, 30, 0.35);
+}
+
+.section-snow-queen .snow-queen-header {
+  position: relative;
+  padding: 18px 20px 16px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 42px rgba(5, 8, 28, 0.28);
+  text-align: center;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  animation: snow-glow-header 9s ease-in-out infinite alternate;
+}
+
+.section-snow-queen .snow-queen-header::before {
+  content: "";
+  position: absolute;
+  inset: -18% 6% auto auto;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0) 60%);
+  transform: translate(12%, -12%) rotate(-4deg);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.section-snow-queen .snow-queen-header::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0, rgba(255, 255, 255, 0) 52%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0) 46%);
+  background-repeat: repeat;
+  background-size: 140px 140px, 220px 220px;
+  background-position: 10% 16%, 70% 40%;
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.snow-queen-layout {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media (min-width: 900px) {
+  .snow-queen-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 40px;
+    align-items: center;
+  }
+
+  .snow-queen-poster {
+    max-width: 420px;
+    margin: 0;
+  }
+}
+
 
 /* строка тегов с характеристиками программы */
 .snow-queen-tags-row {
@@ -2077,7 +2156,61 @@ body.is-lightbox-open {
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  margin: 0 0 32px;
+  margin: 0 auto 32px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0, rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0) 45%);
+  background-repeat: repeat;
+  background-size: 120px 120px, 180px 180px;
+  background-position: 12% 40%, 78% 10%;
+  box-shadow:
+    0 12px 38px rgba(5, 8, 28, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: fit-content;
+  max-width: 100%;
+  animation: snow-glow-tags 9s ease-in-out infinite alternate;
+}
+
+@keyframes snow-glow-header {
+  0% {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 42px rgba(5, 8, 28, 0.28);
+  }
+
+  100% {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 22px 56px rgba(5, 8, 28, 0.36);
+  }
+}
+
+@keyframes snow-glow-tags {
+  0% {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      0 12px 38px rgba(5, 8, 28, 0.28),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  100% {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 16px 46px rgba(5, 8, 28, 0.34),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-snow-queen .snow-queen-header,
+  .snow-queen-tags-row {
+    animation: none;
+  }
 }
 
 .snow-queen-tag {
@@ -2090,7 +2223,12 @@ body.is-lightbox-open {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  margin-bottom: 24px;
+  margin: 32px 0 24px;
+}
+
+.snow-queen-details {
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 /* на десктопе – две колонки */
@@ -2208,14 +2346,16 @@ body.is-lightbox-open {
     padding: 56px 0 52px;
   }
 
-  .section-snow-queen .section-header,
-  .section-snow-queen-details .section-header {
+  .section-snow-queen .section-header {
     text-align: center;
   }
 
-  .section-snow-queen .section-title,
-  .section-snow-queen-details .section-title {
+  .section-snow-queen .section-title {
     font-size: 22px;
+  }
+
+  .snow-queen-content .snow-queen-tags-row {
+    justify-content: center;
   }
 
   .snow-queen-card-actions .btn {
@@ -2229,10 +2369,6 @@ body.is-lightbox-open {
     min-height: 100vh;
     padding-top: 96px;
     padding-bottom: 96px;
-  }
-
-  .section-snow-queen .snow-poster {
-    display: none;
   }
 }
 
@@ -2290,8 +2426,8 @@ body.is-lightbox-open {
 
   100% {
     background-position:
-      -140px 80px,
-      0 40px;
+      -180px 260px,
+      -140px 260px;
   }
 }
 
@@ -6969,24 +7105,22 @@ gallery__video-item iframe {
 @media (min-width: 768px) {
   .section-snow-queen {
     min-height: 100vh;
-    display: flex;
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .snow-queen-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 32px;
     align-items: center;
   }
 
-  .section-snow-queen .container {
-    position: relative;
-    z-index: 1;
+  .snow-queen-poster {
+    margin: 0;
   }
 
-  /* Убираем старые «световые круги», чтобы постер читался чище */
-  .section-snow-queen::before,
-  .section-snow-queen::after {
-    display: none;
-  }
-
-  /* Опускаем блоки с текстом вниз, чтобы было видно надпись на постере */
-  .section-snow-queen .snow-queen-grid {
-    margin-top: 96px;
+  .snow-queen-content .section-header {
+    margin-bottom: 16px;
   }
 }
 
@@ -7010,7 +7144,7 @@ gallery__video-item iframe {
 }
 
 /* Анимация появления сетки карточек после небольшой задержки */
-.section-snow-queen-details .snow-queen-grid {
+.section-snow-queen .snow-queen-grid {
   opacity: 0;
   transform: translateY(32px);
   transition:
@@ -7018,7 +7152,7 @@ gallery__video-item iframe {
     transform 600ms cubic-bezier(0.22, 0.61, 0.36, 0.1);
 }
 
-.section-snow-queen-details .snow-queen-grid.snow-queen-grid--visible {
+.section-snow-queen .snow-queen-grid.snow-queen-grid--visible {
   opacity: 1;
   transform: translateY(0);
 }

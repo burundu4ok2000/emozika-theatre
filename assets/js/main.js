@@ -2632,7 +2632,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Snow Queen: задержка появления карточек после того, как секция попала в поле зрения
 document.addEventListener("DOMContentLoaded", function () {
-  const snowSection = document.querySelector(".section-snow-queen-details");
+  const snowSection = document.querySelector(".section-snow-queen");
   const snowGrid = snowSection
     ? snowSection.querySelector(".snow-queen-grid")
     : null;
