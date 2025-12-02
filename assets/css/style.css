@@ -2102,7 +2102,7 @@ body.is-lightbox-open {
 }
 
 /* делта к общему card-luxe: стеклянность и подсветка */
-.section-snow-queen .snow-queen-card {
+.snow-queen-card {
   position: relative;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.96);
@@ -2113,7 +2113,7 @@ body.is-lightbox-open {
   padding: 24px 22px 22px;
 }
 
-.section-snow-queen .snow-queen-card::before {
+.snow-queen-card::before {
   content: "";
   position: absolute;
   inset: -40%;
@@ -2126,22 +2126,22 @@ body.is-lightbox-open {
   transition: opacity var(--motion-normal) var(--motion-ease-soft);
 }
 
-.section-snow-queen .snow-queen-card--schools {
+.snow-queen-card--schools {
   border-top: 4px solid var(--color-accent-gold);
 }
 
-.section-snow-queen .snow-queen-card--family {
+.snow-queen-card--family {
   border-top: 4px solid var(--color-brand-light);
 }
 
 /* hover усиливает свет и тень – опирается на общие transition у card-luxe */
-.section-snow-queen .snow-queen-card:hover {
+.snow-queen-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 26px 80px rgba(8, 2, 26, 0.28);
   border-color: rgba(122, 47, 180, 0.35);
 }
 
-.section-snow-queen .snow-queen-card:hover::before {
+.snow-queen-card:hover::before {
   opacity: 1;
 }
 
@@ -2208,11 +2208,13 @@ body.is-lightbox-open {
     padding: 56px 0 52px;
   }
 
-  .section-snow-queen .section-header {
+  .section-snow-queen .section-header,
+  .section-snow-queen-details .section-header {
     text-align: center;
   }
 
-  .section-snow-queen .section-title {
+  .section-snow-queen .section-title,
+  .section-snow-queen-details .section-title {
     font-size: 22px;
   }
 
@@ -7008,7 +7010,7 @@ gallery__video-item iframe {
 }
 
 /* Анимация появления сетки карточек после небольшой задержки */
-.section-snow-queen .snow-queen-grid {
+.section-snow-queen-details .snow-queen-grid {
   opacity: 0;
   transform: translateY(32px);
   transition:
@@ -7016,7 +7018,7 @@ gallery__video-item iframe {
     transform 600ms cubic-bezier(0.22, 0.61, 0.36, 0.1);
 }
 
-.section-snow-queen .snow-queen-grid.snow-queen-grid--visible {
+.section-snow-queen-details .snow-queen-grid.snow-queen-grid--visible {
   opacity: 1;
   transform: translateY(0);
 }
