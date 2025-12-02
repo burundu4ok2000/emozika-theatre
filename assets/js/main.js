@@ -1294,6 +1294,20 @@ function initPeopleBlock(data) {
 // Видеоотзывы: данные для ленты "Видеоистории родителей"
 // ======================================
 
+function buildVideoEmbedUrl(platform, videoId) {
+  if (!videoId) return "";
+
+  if (platform === "youtube") {
+    return "https://www.youtube.com/embed/" + videoId;
+  }
+
+  if (platform === "vk") {
+    return "https://vk.com/video/" + videoId;
+  }
+
+  return "";
+}
+
 const videoReviews = [
   {
     id: "review-masha-9",
@@ -1377,7 +1391,7 @@ const videoReviews = [
     thumbUrl: "assets/img/reviews/camp-montage-thumb.jpg",
     thumbAlt: "Кадры из смены лагеря студии «Эмоция»",
 
-    videoEmbedUrl: "https://www.youtube.com/embed/YYYYYYYY", // TODO: embed
+    videoEmbedUrl: buildVideoEmbedUrl("youtube", "YYYYYYYY"),
     platform: "youtube",
     videoId: "YYYYYYYY",
 
