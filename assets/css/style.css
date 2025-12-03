@@ -1582,59 +1582,117 @@ body.has-modal-open {
   border-radius: 12px;
   box-shadow: 0 20px 50px rgba(5, 10, 30, 0.35);
 }
+
 .section-snow-queen .snow-queen-header {
   position: relative;
-  padding: 18px 20px 16px;
-  margin-bottom: 20px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 42px rgba(5, 8, 28, 0.28);
+  padding: 18px 22px 18px;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(88, 180, 255, 0.35), transparent 60%),
+    rgba(9, 16, 40, 0.94);
+  border: 1px solid rgba(150, 220, 255, 0.55);
+  box-shadow: 0 20px 50px rgba(5, 8, 28, 0.75);
   text-align: center;
   overflow: hidden;
   width: fit-content;
   max-width: 100%;
   animation: snow-glow-header 9s ease-in-out infinite alternate;
 }
+
+.section-snow-queen .snow-queen-header .section-kicker {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(210, 230, 255, 0.9);
+}
+
+.section-snow-queen .snow-queen-header .section-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: #ffffff;
+  text-shadow:
+    0 3px 10px rgba(5, 8, 28, 0.6),
+    0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.section-snow-queen .snow-queen-header .section-subtitle {
+  max-width: 520px;
+  margin: 6px auto 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(225, 235, 255, 0.92);
+}
+
+@media (min-width: 768px) {
+  .section-snow-queen .snow-queen-header .section-title {
+    font-size: 30px;
+  }
+
+  .section-snow-queen .snow-queen-header .section-subtitle {
+    font-size: 15px;
+  }
+}
+
 .snow-queen-tags-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  margin: 0 auto 32px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0, transparent 55%),
-                    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0, transparent 45%);
-  background-repeat: repeat;
-  background-size: 120px 120px, 180px 180px;
-  background-position: 12% 40%, 78% 10%;
-  box-shadow: 0 12px 38px rgba(5, 8, 28, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  animation: snow-glow-tags 9s ease-in-out infinite alternate;
+  width: fit-content;
+  margin: 12px auto 32px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.18), rgba(149, 219, 255, 0.5)),
+    radial-gradient(circle at 0% 0%, rgba(88, 180, 255, 0.45), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(149, 219, 255, 0.4), transparent 55%),
+    rgba(5, 10, 30, 0.96);
+  background-size: 200% 200%, auto, auto, auto;
+  background-position: 0% 50%, 0 0, 100% 100%, 0 0;
+  border: 1px solid rgba(149, 219, 255, 0.6);
+  box-shadow: 0 18px 50px rgba(5, 8, 28, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: snow-tags-shimmer 12s ease-in-out infinite;
 }
+
+/* Бейджи поверх более тёмного фона */
+.section-snow-queen .snow-queen-tags-row .badge {
+  --badge-bg-soft: rgba(255, 255, 255, 0.2);
+  --badge-text-soft: #0b0b1f;
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+
 @keyframes snow-glow-header {
   0% {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 18px 42px rgba(5, 8, 28, 0.28);
+    transform: translate3d(0, 0, 0);
+    opacity: 0.95;
   }
   100% {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 22px 56px rgba(5, 8, 28, 0.36);
+    transform: translate3d(-4px, -6px, 0);
+    opacity: 1;
   }
 }
-@keyframes snow-glow-tags {
+@keyframes snow-tags-shimmer {
   0% {
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 12px 38px rgba(5, 8, 28, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    background-position: 0% 50%, 0 0, 100% 100%, 0 0;
+    box-shadow: 0 16px 46px rgba(5, 8, 28, 0.7);
+  }
+  50% {
+    background-position: 100% 50%, 0 0, 100% 100%, 0 0;
+    box-shadow: 0 22px 60px rgba(5, 8, 28, 0.9);
   }
   100% {
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 16px 46px rgba(5, 8, 28, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    background-position: 0% 50%, 0 0, 100% 100%, 0 0;
+    box-shadow: 0 16px 46px rgba(5, 8, 28, 0.7);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1650,15 +1708,80 @@ body.has-modal-open {
   margin: 32px 0 24px;
 }
 .snow-queen-details {
-  max-width: 520px;
+  max-width: 640px;
   margin: 0 auto;
 }
+/* Карточка с двумя сценариями (группы / семьи) */
+.snow-queen-details-title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-brand-dark);
+}
+
+.snow-queen-details-columns {
+  display: grid;
+  gap: 16px;
+}
+
 @media (min-width: 768px) {
   .snow-queen-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
+
+  .snow-queen-details-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 24px;
+  }
+
+  .snow-queen-details-column + .snow-queen-details-column {
+    border-left: 1px solid rgba(122, 47, 180, 0.12);
+    padding-left: 18px;
+  }
 }
+
+.snow-queen-details-heading {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+}
+
+.snow-queen-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.snow-queen-btn {
+  flex: 1 1 180px;
+  justify-content: center;
+}
+
+.snow-queen-btn--schools {
+  box-shadow: 0 10px 26px rgba(8, 2, 26, 0.3);
+}
+
+.snow-queen-btn--family {
+  background: linear-gradient(13deg, var(--color-brand-light), var(--color-brand));
+  box-shadow: 0 10px 26px rgba(8, 2, 26, 0.3);
+}
+
+@media (max-width: 575.98px) {
+  .snow-queen-actions {
+    flex-direction: column;
+  }
+
+  .snow-queen-btn {
+    width: 100%;
+  }
+}
+
 .snow-queen-card {
   position: relative;
   overflow: hidden;
@@ -1691,20 +1814,46 @@ body.has-modal-open {
 }
 .snow-queen-card-title {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--color-brand-dark);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
-.snow-queen-list {
-  margin: 0 0 18px;
-  padding-left: 18px;
+
+/* Общий стиль списков в блоке Snow Queen */
+.snow-queen-list,
+.snow-queen-card-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding-left: 0;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text-soft);
 }
-.snow-queen-list li + li {
-  margin-top: 4px;
+
+.snow-queen-list li,
+.snow-queen-card-list li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.snow-queen-list li + li,
+.snow-queen-card-list li + li {
+  margin-top: 6px;
+}
+
+/* Аккуратные «снежные» маркеры */
+.snow-queen-list li::before,
+.snow-queen-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #ffcf71, #ffffff);
+  box-shadow: 0 0 0 1px rgba(5, 8, 28, 0.2);
 }
 .snow-queen-card-actions {
   display: flex;
