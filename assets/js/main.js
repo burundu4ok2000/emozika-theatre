@@ -1135,7 +1135,10 @@ function initPeopleBlock(data) {
 
   let activeGroupId = groups[0].id;
   let expanded = false;
-  const MAX_VISIBLE = 6;
+
+  function getMaxVisible() {
+    return window.innerWidth <= 768 ? 3 : 6;
+  }
 
   function getActiveGroup() {
     return groups.find(function (group) {
@@ -1180,7 +1183,8 @@ function initPeopleBlock(data) {
       return orderA - orderB;
     });
 
-    const limit = expanded ? people.length : MAX_VISIBLE;
+    const maxVisible = getMaxVisible();
+    const limit = expanded ? people.length : maxVisible;
 
     people.forEach(function (person, index) {
       const card = document.createElement("article");
@@ -1240,7 +1244,7 @@ function initPeopleBlock(data) {
       card.appendChild(figure);
       card.appendChild(content);
 
-      if (!expanded && index >= MAX_VISIBLE) {
+      if (!expanded && index >= maxVisible) {
         card.classList.add("person-card--collapsed");
       }
 
@@ -1256,7 +1260,7 @@ function initPeopleBlock(data) {
       peopleRoot.appendChild(noteEl);
     }
 
-    if (people.length > MAX_VISIBLE) {
+    if (people.length > getMaxVisible()) {
       const toggleBtn = document.createElement("button");
       toggleBtn.type = "button";
       toggleBtn.className = "people-toggle";
@@ -1288,6 +1292,15 @@ function initPeopleBlock(data) {
 
   renderFilters();
   renderGroup();
+
+  let isMobile = window.innerWidth <= 768;
+  window.addEventListener("resize", function () {
+    const nowMobile = window.innerWidth <= 768;
+    if (nowMobile !== isMobile && !expanded) {
+      isMobile = nowMobile;
+      renderGroup();
+    }
+  });
 }
 
 // ======================================
@@ -2426,6 +2439,8 @@ function buildDirectionsTagsHtml(directions) {
 function renderTopAwardsStrip(container, topAwards) {
   if (!container) return;
 
+  const isDesktop = window.innerWidth >= 1024;
+
   // Фабрика HTML для одного бейджа
   function getBadgeHtml(award) {
     var isGrandPrix = award.label.indexOf("Гран-при") !== -1;
@@ -2451,7 +2466,18 @@ function renderTopAwardsStrip(container, topAwards) {
 
   // Если автолента — размножаем набор бейджей, чтобы создать бесшовный цикл.
   var autoStripParent = container.closest(".awards-strip--auto");
-  var repeatCount = autoStripParent ? 5 : 1;
+  var repeatCount = 1;
+
+  if (autoStripParent) {
+    repeatCount = isDesktop ? 5 : 3; // на мобильных оставляем дубль для нормального скролла
+
+    if (isDesktop) {
+      var shiftPercent = -(100 / repeatCount);
+      container.style.setProperty("--awards-shift", shiftPercent + "%");
+    } else {
+      container.style.removeProperty("--awards-shift");
+    }
+  }
 
   container.innerHTML = "";
   for (var r = 0; r < repeatCount; r++) {
@@ -2508,22 +2534,17 @@ function initAwardsStripControls(stripEl) {
   if (!stripEl) return;
 
   const viewport = stripEl.querySelector(".awards-strip-viewport");
-  const buttons = stripEl.querySelectorAll("[data-awards-scroll]");
   const inner = stripEl.querySelector(".awards-strip-inner");
-  if (!viewport || !buttons.length) return;
-
-  buttons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      const direction = button.dataset.awardsScroll === "prev" ? -1 : 1;
-      const distance = Math.max(viewport.clientWidth * 0.7, 160);
-      viewport.scrollBy({ left: direction * distance, behavior: "smooth" });
-    });
-  });
+  if (!viewport || !inner) return;
 
   // Бесконечная лента: если содержимое дублировано (auto-лента),
   // то при прокрутке переставляем scrollLeft, чтобы сразу после конца шёл старт.
-  const repeatCount = inner && inner.dataset.awardsRepeat ? parseInt(inner.dataset.awardsRepeat, 10) : 1;
-  const baseWidth = inner && inner.dataset.awardsBaseWidth ? parseFloat(inner.dataset.awardsBaseWidth) : 0;
+  const repeatCount = inner.dataset.awardsRepeat
+    ? parseInt(inner.dataset.awardsRepeat, 10)
+    : 1;
+  const baseWidth = inner.dataset.awardsBaseWidth
+    ? parseFloat(inner.dataset.awardsBaseWidth)
+    : 0;
   if (repeatCount > 1 && baseWidth > 0) {
     const minEdge = baseWidth * 0.5;
     const maxEdge = baseWidth * (repeatCount - 1.5);
@@ -2536,9 +2557,51 @@ function initAwardsStripControls(stripEl) {
       }
     });
   }
+
+  // Drag/Swipe прокрутка
+  let isDragging = false;
+  let dragStartX = 0;
+  let startScroll = 0;
+
+  viewport.addEventListener("pointerdown", function (event) {
+    isDragging = true;
+    dragStartX = event.clientX;
+    startScroll = viewport.scrollLeft;
+    viewport.classList.add("is-dragging");
+    viewport.setPointerCapture(event.pointerId);
+  });
+
+  viewport.addEventListener("pointermove", function (event) {
+    if (!isDragging) return;
+    const deltaX = event.clientX - dragStartX;
+    viewport.scrollLeft = startScroll - deltaX;
+  });
+
+  function endDrag() {
+    isDragging = false;
+    viewport.classList.remove("is-dragging");
+  }
+
+  viewport.addEventListener("pointerup", endDrag);
+  viewport.addEventListener("pointercancel", endDrag);
+  viewport.addEventListener("pointerleave", endDrag);
+
+  // Горизонтальный скролл мышью
+  viewport.addEventListener(
+    "wheel",
+    function (event) {
+      const delta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)
+          ? event.deltaX
+          : event.deltaY;
+      viewport.scrollLeft += delta;
+      event.preventDefault();
+    },
+    { passive: false }
+  );
 }
 
-function renderFestivalCards(container, festivals) {
+function renderFestivalCards(container, festivals, maxVisible) {
   if (!container) return;
   container.innerHTML = "";
 
@@ -2553,7 +2616,10 @@ function renderFestivalCards(container, festivals) {
     return maxYearB - maxYearA;
   });
 
-  sorted.forEach(function (festival) {
+  const displayCount =
+    typeof maxVisible === "number" ? maxVisible : sorted.length;
+
+  sorted.slice(0, displayCount).forEach(function (festival) {
     const card = document.createElement("article");
     card.className = "festival-card";
     card.setAttribute("data-festival-id", festival.id);
@@ -2626,7 +2692,44 @@ function initAwardsBlock(festivals) {
 
   renderTopAwardsStrip(stripRoot, topAwards);
   initAwardsStripControls(awardsSection.querySelector("[data-awards-strip]"));
-  renderFestivalCards(festivalsRoot, festivals);
+
+  let festivalsExpanded = false;
+
+  function renderFestivalsList() {
+    const isMobile = window.innerWidth <= 768;
+    const maxVisible = isMobile ? 2 : festivals.length;
+    const limit = festivalsExpanded ? festivals.length : maxVisible;
+
+    renderFestivalCards(festivalsRoot, festivals, limit);
+
+    if (isMobile && festivals.length > maxVisible) {
+      const toggleBtn = document.createElement("button");
+      toggleBtn.type = "button";
+      toggleBtn.className = "people-toggle awards-toggle";
+      toggleBtn.textContent = festivalsExpanded
+        ? "Свернуть фестивали"
+        : "Показать ещё фестивали";
+
+      toggleBtn.addEventListener("click", function () {
+        festivalsExpanded = !festivalsExpanded;
+        renderFestivalsList();
+      });
+
+      festivalsRoot.appendChild(toggleBtn);
+    }
+  }
+
+  renderFestivalsList();
+
+  let wasMobile = window.innerWidth <= 768;
+  window.addEventListener("resize", function () {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile !== wasMobile) {
+      festivalsExpanded = false;
+      renderFestivalsList();
+      wasMobile = isMobile;
+    }
+  });
 }
 
 // Подключаем блоки к жизненному циклу страницы

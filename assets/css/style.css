@@ -394,6 +394,20 @@ img {
     color var(--motion-fast) var(--motion-ease-soft);
 }
 
+/* Компактная кнопка для мобайла */
+.btn-compact-mobile {
+  gap: 6px;
+}
+
+@media (max-width: 767.98px) {
+  .btn-compact-mobile {
+    padding: 9px 12px;
+    font-size: 13px;
+    min-height: 40px;
+    line-height: 1.2;
+  }
+}
+
 .btn-primary {
   padding: 12px 22px;
   border: none;
@@ -408,6 +422,12 @@ img {
 .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 18px 52px rgba(8, 2, 26, 0.6);
+}
+
+.btn-lg {
+  padding: 13px 24px;
+  font-size: 15px;
+  min-height: 48px;
 }
 
 .btn-ghost {
@@ -829,14 +849,16 @@ body.is-lightbox-open {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
+  gap: 12px;
 }
 
 .logo-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 999px;
+  flex-shrink: 0;
   background: rgba(122, 47, 180, 0.08);
   text-decoration: none;
   color: var(--color-brand-dark);
@@ -856,6 +878,8 @@ body.is-lightbox-open {
 .logo-mark {
   width: 28px;
   height: 28px;
+  flex: 0 0 28px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, rgba(213, 154, 255, 0.4), rgba(122, 47, 180, 0.18));
   padding: 2px;
@@ -871,6 +895,16 @@ body.is-lightbox-open {
   font-weight: 600;
   font-size: 14px;
   color: var(--color-brand-dark);
+  line-height: 1.1;
+}
+
+@media (max-width: 640px) {
+  .logo-text {
+    display: none;
+  }
+  .logo-badge {
+    padding: 4px 8px;
+  }
 }
 
 .main-nav {
@@ -897,18 +931,32 @@ body.is-lightbox-open {
   color: var(--color-brand);
 }
 
-.main-nav .nav-link-cta {
-  margin-left: 24px;
+.nav-link-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 16px;
   border-radius: 999px;
   border: none;
   background: var(--color-brand);
   color: #ffffff;
   box-shadow: 0 6px 16px rgba(74, 23, 123, 0.3);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.main-nav .nav-link-cta {
+  margin-left: 24px;
 }
 
 .main-nav .nav-link-cta:hover {
   background: var(--color-brand-light);
+}
+
+.header-cta {
+  flex: 0 0 auto;
+  margin-left: 16px;
+  white-space: nowrap;
 }
 
 .top-banner {
@@ -949,7 +997,7 @@ body.is-lightbox-open {
   align-items: center;
   gap: 32px;
   min-height: 80vh;
-  padding: 40px 0 60px;
+  padding: 40px 24px 60px;
 }
 .hero-content {
   flex: 1 1 320px;
@@ -997,15 +1045,6 @@ body.is-lightbox-open {
 .hero-actions .btn + .btn {
   margin-left: 10px;
 }
-.hero .btn-primary {
-  background-color: var(--color-brand);
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(8, 2, 26, 0.55);
-}
-.hero .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 32px rgba(8, 2, 26, 0.65);
-}
 .hero-actions .btn-secondary {
   border: 1px solid rgba(255, 255, 255, 0.55);
   background: rgba(0, 0, 0, 0.08);
@@ -1029,6 +1068,13 @@ body.is-lightbox-open {
   background: #FFD1DC;
   bottom: -10px;
   right: 0;
+}
+
+@media (max-width: 1023px) {
+  .hero-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
 .hero-poster {
   position: relative;
@@ -1063,9 +1109,10 @@ body.is-lightbox-open {
 
 @media (max-width: 768px) {
   .header-inner {
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 8px;
     padding: 8px 0;
+    min-width: 0;
   }
 
   .logo-text {
@@ -1073,12 +1120,15 @@ body.is-lightbox-open {
   }
 
   .main-nav {
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
     flex-wrap: nowrap;
     gap: 10px;
+    justify-content: flex-end;
     overflow-x: auto;
     padding: 4px 0 6px;
     -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
   }
 
   .main-nav::-webkit-scrollbar {
@@ -1103,18 +1153,27 @@ body.is-lightbox-open {
     padding: 8px 14px;
   }
 
+  .header-cta {
+    flex: 0 0 auto;
+    margin-left: 8px;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
   .hero {
     min-height: auto;
   }
 
   .hero-inner {
-    padding: 28px 0 44px;
+    padding: 28px 16px 44px;
     min-height: 0;
     gap: 22px;
+    justify-content: center;
   }
 
   .hero-content {
     text-align: center;
+    margin: 0 auto;
   }
 
   .hero-title {
@@ -1221,22 +1280,29 @@ body.is-lightbox-open {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
+  background: #0b0617;
+  aspect-ratio: 2 / 3;
+  min-height: 260px;
 }
 .afisha-card-poster-image {
   display: block;
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #0b0617;
   transition: transform 0.18s ease-out;
 }
 .afisha-card--strip:hover .afisha-card-poster-image {
   transform: scale(1.03);
 }
 .afisha-card-badge-wrap {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 14px;
 }
 .afisha-card-badge--premiere {
   background: linear-gradient(135deg, #ffcf33, #ff7a00);
@@ -1330,7 +1396,7 @@ body.is-lightbox-open {
   }
 
   .afisha-strip-wrapper::after {
-    content: "Свайпните афишу \u2192";
+    content: "Свайпните афишу →";
     position: absolute;
     right: 12px;
     bottom: -12px;
@@ -1919,6 +1985,7 @@ body.has-modal-open {
 
 .snow-queen-btn--schools {
   box-shadow: 0 10px 26px rgba(8, 2, 26, 0.3);
+  white-space: nowrap;
 }
 
 .snow-queen-btn--family {
@@ -1928,11 +1995,14 @@ body.has-modal-open {
 
 @media (max-width: 575.98px) {
   .snow-queen-actions {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .snow-queen-btn {
-    width: 100%;
+    flex: 1 1 48%;
+    min-width: 140px;
+    width: auto;
   }
 }
 
@@ -2037,22 +2107,37 @@ body.has-modal-open {
   }
   .snow-queen-tags-row {
     width: 100%;
-    justify-content: flex-start;
-    margin: 12px 0 24px;
+    justify-content: center;
+    margin: 12px auto 24px;
   }
   .snow-queen-details {
     padding: 18px 16px;
   }
   .snow-queen-actions {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
   .snow-queen-btn {
-    width: 100%;
-    max-width: 320px;
-    padding: 12px 14px;
-    font-size: 15px;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 140px;
+    width: auto;
+    max-width: 220px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+  .snow-queen-btn--schools {
+    flex: 1 1 60%;
+    max-width: 260px;
+    font-size: 14px;
+  }
+  .snow-queen-btn--family {
+    flex: 1 1 38%;
+    max-width: 170px;
+    font-size: 12px;
+    padding: 8px 10px;
   }
   /* Лёгкий «снежок» и на мобильных */
   .section-snow-queen {
@@ -2346,6 +2431,8 @@ body.has-modal-open {
 .awards-strip-viewport {
   position: relative;
   overflow: hidden;
+  touch-action: pan-x;
+  cursor: grab;
 }
 
 /* дорожка бейджей */
@@ -2580,27 +2667,31 @@ body.has-modal-open {
 }
 
 .festival-card-title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.3;
   margin-bottom: 0.15rem;
 }
 
 .festival-card-meta {
-  font-size: 0.8rem;
-  opacity: 0.8;
+  font-size: 0.84rem;
+  opacity: 0.78;
+  letter-spacing: 0.01em;
 }
 
 .festival-card-headline {
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-  opacity: 0.95;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+  opacity: 0.96;
 }
 
 .festival-card-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.85rem 0;
-  font-size: 0.85rem;
+  margin: 0 0 0.95rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .festival-card-list li {
@@ -2649,46 +2740,62 @@ body.has-modal-open {
   border-color: rgba(197, 169, 255, 0.85);
 }
 
-/* Автоскролл ленты наград для десктопа */
-@media (min-width: 1024px) {
+.awards-strip-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+/* Автоскролл ленты наград для всех экранов */
+.awards-strip--auto .awards-strip-inner {
+  --awards-shift: -50%;
+  animation: awards-strip-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.awards-strip--auto:hover .awards-strip-inner {
+  animation-play-state: paused;
+}
+
+.awards-strip--auto.awards-strip--manual-control .awards-strip-inner {
+  animation: none !important;
+  transform: translateX(0) !important;
+}
+
+.awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar {
+  height: 6px;
+}
+
+.awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+@keyframes awards-strip-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--awards-shift, -50%));
+  }
+}
+
+@media (max-width: 1023px) {
   .awards-strip--auto .awards-strip-inner {
-    animation: awards-strip-scroll 40s linear infinite;
-    will-change: transform;
+    animation: none;
+    transform: none;
   }
 
-  .awards-strip--auto:hover .awards-strip-inner {
-    animation-play-state: paused;
-  }
-
-  .awards-strip--auto.awards-strip--manual-control .awards-strip-inner {
-    animation: none !important;
-    transform: translateX(0) !important;
-  }
-
-  .awards-strip--manual-control .awards-strip-viewport {
+  .awards-strip-viewport {
     overflow-x: auto;
+    touch-action: pan-x;
   }
 
-  .awards-strip--manual-control .awards-strip-inner {
-    scroll-snap-type: x mandatory;
-  }
-
-  .awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar {
+  .awards-strip-viewport::-webkit-scrollbar {
     height: 6px;
   }
 
-  .awards-strip--manual-control .awards-strip-viewport::-webkit-scrollbar-thumb {
+  .awards-strip-viewport::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.35);
     border-radius: 999px;
-  }
-
-  @keyframes awards-strip-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
   }
 }
 
@@ -2925,21 +3032,38 @@ body.has-modal-open {
 }
 @media (max-width: 768px) {
   .footer {
-    padding: 1.8rem 0 1.6rem;
+    padding: 1.6rem 0 1.4rem;
+    box-shadow: 0 -12px 26px rgba(0, 0, 0, 0.4);
   }
   .footer__inner {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px 14px;
   }
   .footer__nav {
+    flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
-    gap: 6px;
+    gap: 4px;
+    flex: 1 1 180px;
+    text-align: center;
+    order: 2;
   }
   .footer__meta {
     text-align: left;
     max-width: none;
     width: 100%;
+    font-size: 0.82rem;
+    order: 3;
+  }
+  .footer__brand {
+    max-width: none;
+    flex: 1 1 160px;
+    order: 1;
+  }
+  .footer__copy {
+    margin-top: 6px;
   }
 }
 
