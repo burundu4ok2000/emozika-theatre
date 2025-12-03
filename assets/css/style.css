@@ -3,12 +3,43 @@
    =========================== */
 
   /* 1. БАЗА: переменные, reset, типографика */
-  /* 2. ЛЕЙАУТ И КОМПОНЕНТЫ (общие для всего сайта) */
-    /* 2.1 ЛЕЙАУТ (общие для всего сайта) */
-    /* 2.2 КОМПОНЕНТЫ: кнопки, бейджи, карточки */
-    /* 2.3 Компонент: Лайтбокс (Lightbox) */
-  /* 3. АКТИВНЫЕ СЕКЦИИ */
-  /* 4. ВЫКЛЮЧЕННЫЕ / АРХИВНЫЕ СЕКЦИИ */
+
+  /* 2. ЛЕЙАУТ И КОМПОНЕНТЫ (общие для всего сайта)
+       2.1 ЛЕЙАУТ (общие для всего сайта)
+       2.2 КОМПОНЕНТЫ: кнопки, бейджи, карточки, карточные оболочки
+       2.3 Компонент: Лайтбокс (Lightbox)
+  */
+
+  /* 3. АКТИВНЫЕ СЕКЦИИ
+       3.1 Hero (#hero)
+       3.2 Afisha (#afisha)
+         3.2.2 Модальное окно спектакля
+         3.2.3 Стили афиши в стиле Emozika
+       3.3 Snow Queen (#snow-queen)
+       3.4 People (#people)
+       3.5 Awards (#awards)
+         3.5.1 Карточка фестиваля
+       3.6 Contacts (#contacts)
+       3.7 Footer (#footer)
+  */
+
+  /* 4. ВЫКЛЮЧЕННЫЕ / АРХИВНЫЕ СЕКЦИИ
+       4.1 Tracks (#tracks) – блок «Два направления»
+       4.2 Abonements (#abonements) – абонементы студии
+       4.3 Studio (#studio)
+       4.4 Films (#films)
+       4.5 Casting (#casting)
+       4.6 Stats (#stats) – цифры и факты
+       4.7 Reviews (#reviews)
+       4.8 Gallery (#gallery)
+       4.9 Docs (#docs)
+       4.10 FAQ (#faq)
+       4.11 Branches (#branches)
+       4.12 Snow Queen Details (#snow-queen-details)
+       Legacy: Archive, About, NEW YEAR (section-ny), WHY US, Play
+  */
+
+  /* 5. ГЛОБАЛЬНЫЕ МЕДИА-ЗАПРОСЫ / МОБИЛЬНЫЙ РИТМ */
 
 /* ===========================
    1. БАЗА: переменные, reset, типографика
@@ -202,6 +233,10 @@ img {
   opacity: var(--hand-underline-opacity);
   transform: translateX(-50%) translateY(0);
 }
+
+/* ===========================
+   2.x УТИЛИТЫ: декоративные заголовки, анимации появления
+   =========================== */
 
 .heading-with-scribble {
   position: relative;
@@ -545,6 +580,71 @@ img {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
 }
 
+/* Luxe card – общий стиль премиальных карточек */
+.card-luxe {
+  border-radius: 24px;
+  background: linear-gradient(145deg, #ffffff, #f6f0ff);
+  box-shadow: 0 20px 60px rgba(8, 2, 26, 0.12);
+  border: 1px solid rgba(122, 47, 180, 0.1);
+  padding: 22px 20px;
+  transition:
+    transform var(--motion-normal) var(--motion-ease-soft),
+    box-shadow var(--motion-normal) var(--motion-ease-soft),
+    border-color var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
+}
+
+/* Глобальное движение карточек – общий ховер для премиальных карточек */
+.card-luxe,
+.afisha-card,
+.abonement-card,
+.films-card,
+.gallery-card {
+  transition:
+    transform var(--motion-fast) var(--motion-ease-soft),
+    box-shadow var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-fast) var(--motion-ease-soft);
+}
+
+.card-luxe:hover,
+.afisha-card:hover,
+.abonement-card:hover,
+.films-card:hover,
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(8, 2, 26, 0.28);
+}
+
+/* Luxe section shell – белая карточка на фоне */
+.section-card {
+  padding: 80px 0;
+}
+
+.section-card .section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  border-radius: 32px;
+  background: var(--color-surface);
+  box-shadow: 0 22px 60px var(--border-soft);
+  border: 1px solid var(--border-brand-soft);
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .section-card {
+    padding: 56px 0;
+  }
+
+  .section-card .section-inner {
+    padding: 24px 18px;
+  }
+
+  :root {
+    --hand-underline-width: 110px;
+  }
+}
+
 
 .floating-cta {
   position: fixed;
@@ -696,182 +796,6 @@ body.is-lightbox-open {
 
   .abonement-card:hover {
     transform: none;
-  }
-}
-
-/* Афиша как маленькая сцена: подиум и свет */
-
-.section-afisha .afisha-card {
-  position: relative; /* опорная точка для псевдоэлементов */
-  overflow: visible; /* даём подиуму выходить за границы */
-  z-index: 0;
-  transform-origin: center bottom;
-  transition:
-    transform 0.28s ease-out,
-    box-shadow 0.28s ease-out;
-}
-
-/* лёгкий выезд карточки вперёд при наведении и фокусе клавиатурой */
-.section-afisha .afisha-card:hover,
-.section-afisha .afisha-card:focus-within {
-  transform: translateY(-6px) scale(1.015);
-  box-shadow: 0 24px 60px rgba(8, 2, 26, 0.28);
-}
-
-/* подиум под карточкой (подсвеченная сцена) */
-.section-afisha .afisha-card::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -18px;
-  transform: translateX(-50%) scaleX(0.8);
-  width: 70%;
-  height: 26px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.22) 0%,
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0) 75%
-  );
-  opacity: 0;
-  filter: blur(6px);
-  transition:
-    opacity 0.35s ease-out,
-    transform 0.35s ease-out,
-    filter 0.35s ease-out;
-  z-index: -1; /* слой под карточкой */
-}
-
-/* при наведении подиум расширяется и усиливается */
-.section-afisha .afisha-card:hover::before,
-.section-afisha .afisha-card:focus-within::before {
-  opacity: 1;
-  transform: translateX(-50%) scaleX(1.08);
-  filter: blur(10px);
-}
-
-/* мягкий луч софитов сверху */
-.section-afisha .afisha-card::after {
-  content: "";
-  position: absolute;
-  inset: -28px 6% auto;
-  height: 40%;
-  border-radius: 28px;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  opacity: 0;
-  transform: translateY(-8px);
-  transition:
-    opacity 0.35s ease-out,
-    transform 0.35s ease-out;
-  z-index: -1;
-}
-
-/* при наведении луч проявляется */
-.section-afisha .afisha-card:hover::after,
-.section-afisha .afisha-card:focus-within::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* уважение системной настройки prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .section-afisha .afisha-card,
-  .section-afisha .afisha-card::before,
-  .section-afisha .afisha-card::after {
-    transition: none;
-  }
-
-  .section-afisha .afisha-card:hover,
-  .section-afisha .afisha-card:focus-within {
-    transform: none;
-    box-shadow: 0 16px 40px rgba(8, 2, 26, 0.12);
-  }
-
-  .section-afisha .afisha-card:hover::before,
-  .section-afisha .afisha-card:focus-within::before,
-  .section-afisha .afisha-card:hover::after,
-  .section-afisha .afisha-card:focus-within::after {
-    opacity: 0;
-  }
-}
-
-.afisha-note {
-  color: var(--color-text-muted);
-}
-
-/* Luxe card – общий стиль премиальных карточек */
-.card-luxe {
-  border-radius: 24px;
-  background: linear-gradient(145deg, #ffffff, #f6f0ff);
-  box-shadow: 0 20px 60px rgba(8, 2, 26, 0.12);
-  border: 1px solid rgba(122, 47, 180, 0.1);
-  padding: 22px 20px;
-  transition:
-    transform var(--motion-normal) var(--motion-ease-soft),
-    box-shadow var(--motion-normal) var(--motion-ease-soft),
-    border-color var(--motion-fast) var(--motion-ease-soft),
-    background-color var(--motion-fast) var(--motion-ease-soft);
-}
-
-/* Глобальное движение карточек */
-.card-luxe,
-.afisha-card,
-.abonement-card,
-.films-card,
-.gallery-card {
-  transition:
-    transform var(--motion-fast) var(--motion-ease-soft),
-    box-shadow var(--motion-fast) var(--motion-ease-soft),
-    background-color var(--motion-fast) var(--motion-ease-soft);
-}
-
-.card-luxe:hover,
-.afisha-card:hover,
-.abonement-card:hover,
-.films-card:hover,
-.gallery-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(8, 2, 26, 0.28);
-}
-
-@media (max-width: 600px) {
-  .section-card {
-    padding: 56px 0;
-  }
-
-  .section-card .section-inner {
-    padding: 24px 18px;
-  }
-
-  :root {
-    --hand-underline-width: 110px;
-  }
-}
-
-/* Luxe section shell – белая карточка на фоне */
-.section-card {
-  padding: 80px 0;
-}
-
-.section-card .section-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 32px 24px;
-  border-radius: 32px;
-  background: var(--color-surface);
-  box-shadow: 0 22px 60px var(--border-soft);
-  border: 1px solid var(--border-brand-soft);
-  box-sizing: border-box;
-}
-
-@media (min-width: 992px) {
-  .section-card .section-inner {
-    padding: 40px 48px;
   }
 }
 
@@ -1493,6 +1417,111 @@ body.has-modal-open {
   font-weight: 600;
 }
 
+/* Афиша как маленькая сцена: подиум и свет */
+
+.section-afisha .afisha-card {
+  position: relative; /* опорная точка для псевдоэлементов */
+  overflow: visible; /* даём подиуму выходить за границы */
+  z-index: 0;
+  transform-origin: center bottom;
+  transition:
+    transform 0.28s ease-out,
+    box-shadow 0.28s ease-out;
+}
+
+/* лёгкий выезд карточки вперёд при наведении и фокусе клавиатурой */
+.section-afisha .afisha-card:hover,
+.section-afisha .afisha-card:focus-within {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 60px rgba(8, 2, 26, 0.28);
+}
+
+/* подиум под карточкой (подсвеченная сцена) */
+.section-afisha .afisha-card::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%) scaleX(0.8);
+  width: 70%;
+  height: 26px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  opacity: 0;
+  filter: blur(6px);
+  transition:
+    opacity 0.35s ease-out,
+    transform 0.35s ease-out,
+    filter 0.35s ease-out;
+  z-index: -1; /* слой под карточкой */
+}
+
+/* при наведении подиум расширяется и усиливается */
+.section-afisha .afisha-card:hover::before,
+.section-afisha .afisha-card:focus-within::before {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1.08);
+  filter: blur(10px);
+}
+
+/* мягкий луч софитов сверху */
+.section-afisha .afisha-card::after {
+  content: "";
+  position: absolute;
+  inset: -28px 6% auto;
+  height: 40%;
+  border-radius: 28px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.35s ease-out,
+    transform 0.35s ease-out;
+  z-index: -1;
+}
+
+/* при наведении луч проявляется */
+.section-afisha .afisha-card:hover::after,
+.section-afisha .afisha-card:focus-within::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* уважение системной настройки prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .section-afisha .afisha-card,
+  .section-afisha .afisha-card::before,
+  .section-afisha .afisha-card::after {
+    transition: none;
+  }
+
+  .section-afisha .afisha-card:hover,
+  .section-afisha .afisha-card:focus-within {
+    transform: none;
+    box-shadow: 0 16px 40px rgba(8, 2, 26, 0.12);
+  }
+
+  .section-afisha .afisha-card:hover::before,
+  .section-afisha .afisha-card:focus-within::before,
+  .section-afisha .afisha-card:hover::after,
+  .section-afisha .afisha-card:focus-within::after {
+    opacity: 0;
+  }
+}
+
+.afisha-note {
+  color: var(--color-text-muted);
+}
+
 /* Афиша: делаем два главных спектакля равными по размеру */
 .section-afisha .afisha-grid {
   /* чуть крупнее карточки, аккуратная сетка */
@@ -1904,47 +1933,6 @@ body.has-modal-open {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
-/* ===== FACTS ===== */
-
-.section-facts {
-  padding-top: 48px;
-  padding-bottom: 48px;
-}
-
-.facts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.fact-card {
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: var(--color-surface);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
-}
-
-.fact-number {
-  font-family: var(--font-heading);
-  font-size: 28px;
-  margin: 0 0 6px;
-  color: #3b2317;
-}
-
-.fact-label {
-  margin: 0 0 8px;
-  font-weight: 600;
-  color: #6c4b3b;
-}
-
-.fact-text {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-text-muted);
-}
-
 
 /* ==============================
    3.5. Awards (#awards)
@@ -2545,10 +2533,6 @@ body.has-modal-open {
   /* 4.10. FAQ (#faq) */
   /* 4.11. Branches (#branches) */
   /* 4.12. Snow Queen Details (#snow-queen-details) – секция удалена из HTML */
-
-
-
-
 /* ==========================
     4.1. Tracks (#tracks) – блок «Два направления»
    ========================== */
@@ -2733,10 +2717,52 @@ body.has-modal-open {
 }
 
 @media (max-width: 768px) {
-  .tracks-grid,
+.tracks-grid,
   .why-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* ==============================
+   4.6. Stats (#stats) – цифры и факты
+   ============================== */
+
+.section-facts {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.fact-card {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+}
+
+.fact-number {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  margin: 0 0 6px;
+  color: #3b2317;
+}
+
+.fact-label {
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: #6c4b3b;
+}
+
+.fact-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
 }
 
 /* ==========================
@@ -6575,5 +6601,3 @@ gallery__video-item iframe {
     padding-bottom: 40px;
   }
 }
-
-
